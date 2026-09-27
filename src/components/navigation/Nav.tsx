@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, m as motion } from "framer-motion";
 import { navLinks } from "../../data/navigation";
@@ -8,7 +8,9 @@ import { useLenis, useScrollTo } from "../../hooks/useLenis";
 /** Transparent over the hero, ivory glass once scrolled; full-screen menu on mobile. */
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  const lastY = useRef(0);
   const scrollTo = useScrollTo();
   const lenis = useLenis();
   const { pathname } = useLocation();
@@ -16,16 +18,31 @@ export function Nav() {
   const onHome = pathname === "/";
   const solid = scrolled || !onHome;
 
+  // Hide the header on scroll-down, bring it back on scroll-up (or near the
+  // top), so it never sits over content the visitor is trying to read.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.6);
+    lastY.current = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > window.innerHeight * 0.6);
+      if (!open) {
+        const diff = y - lastY.current;
+        if (y < 80) setHidden(false);
+        else if (diff > 4) setHidden(true);
+        else if (diff < -4) setHidden(false);
+      }
+      lastY.current = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [open]);
 
   useEffect(() => {
-    if (open) lenis?.stop();
-    else lenis?.start();
+    if (open) {
+      lenis?.stop();
+      setHidden(false);
+    } else lenis?.start();
     document.documentElement.style.overflow = open ? "hidden" : "";
   }, [open, lenis]);
 
@@ -45,9 +62,9 @@ export function Nav() {
         Skip to content
       </a>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,box-shadow,padding] duration-700 ease-[var(--ease-cine)] ${
+        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,box-shadow,padding,transform] duration-500 ease-[var(--ease-cine)] ${
           solid ? "bg-ivory/85 py-3 shadow-[0_1px_0_rgba(14,22,40,0.08)] backdrop-blur-md" : "py-6"
-        }`}
+        } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
       >
         <nav className="container-x flex items-center justify-between gap-6" aria-label="Primary">
           <Link to="/" onClick={() => onHome && lenis?.scrollTo(0)} className="flex items-center gap-3" aria-label={`${project.name} home`}>

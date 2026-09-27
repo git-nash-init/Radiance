@@ -80,7 +80,10 @@ export function DayNight() {
             </div>
           </div>
 
-          <div className="relative h-[58svh] md:col-span-6 md:col-start-7 md:h-[76svh]">
+          {/* Box aspect matches the renders' own aspect (~1055:1440), so
+              object-cover fills it with zero cropping on mobile; desktop
+              keeps a fixed viewport-height column as before. */}
+          <div className="relative aspect-[1055/1440] md:aspect-auto md:col-span-6 md:col-start-7 md:h-[76svh]">
             {STATES.map((s, i) => (
               <div
                 key={s.key}
