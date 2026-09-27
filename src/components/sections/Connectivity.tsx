@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { useReveal } from "../motion/useReveal";
 import { Lines } from "../motion/Lines";
 import { connectivity, project } from "../../data/project";
@@ -11,7 +11,6 @@ const ANGLES = [-128, -52, 12, 128, 62];
 
 export function Connectivity() {
   const ref = useRef<HTMLElement>(null);
-  const [showMap, setShowMap] = useState(false);
   useReveal(ref);
 
   useLayoutEffect(() => {
@@ -27,7 +26,9 @@ export function Connectivity() {
     return () => ctx.revert();
   }, []);
 
-  const mapSrc = `https://maps.google.com/maps?q=${project.geo.lat},${project.geo.lng}&z=16&output=embed`;
+  // `q=` (rather than `ll=`) drops Google's own red pin exactly on the plot,
+  // which is what visually "highlights" the address on the embedded map.
+  const mapSrc = `https://maps.google.com/maps?q=${project.geo.lat},${project.geo.lng}&z=17&output=embed`;
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${project.geo.lat},${project.geo.lng}`;
 
   return (
@@ -97,18 +98,20 @@ export function Connectivity() {
           </div>
 
           <div className="relative mt-10 aspect-[16/10] overflow-hidden bg-navy" data-reveal="up">
-            {showMap ? (
-              <iframe title="RADIANCE location on Google Maps" src={mapSrc} className="h-full w-full border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
-            ) : (
-              <button type="button" onClick={() => setShowMap(true)} className="group flex h-full w-full flex-col items-center justify-center gap-4 text-ivory">
-                <svg width="28" height="36" viewBox="0 0 28 36" fill="none" stroke="#e2c27a" strokeWidth="1.4" aria-hidden="true">
-                  <path d="M14 35s12-11.5 12-21A12 12 0 002 14c0 9.5 12 21 12 21z" />
-                  <circle cx="14" cy="14" r="4.5" />
-                </svg>
-                <span className="text-xs tracking-[0.24em] uppercase group-hover:text-gold-light">Load interactive map</span>
-                <span className="max-w-xs text-center text-xs text-ivory/50">{project.address.oneLine}</span>
-              </button>
-            )}
+            <iframe
+              title={`RADIANCE — ${project.address.oneLine}`}
+              src={mapSrc}
+              className="h-full w-full border-0 grayscale-[15%]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            {/* Google's own pin (from mapSrc above) marks the exact plot; this
+                label just reinforces which pin on the map is RADIANCE. */}
+            <div className="pointer-events-none absolute top-4 left-4 flex items-center gap-2 bg-navy/85 px-3 py-1.5 text-[0.65rem] font-semibold tracking-[0.18em] text-ivory uppercase backdrop-blur">
+              <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-gold-light" aria-hidden="true" />
+              Radiance
+            </div>
           </div>
           <a href={directions} target="_blank" rel="noopener noreferrer" className="link-underline mt-4 inline-block text-xs font-semibold tracking-[0.22em] text-navy uppercase">
             Get directions →
