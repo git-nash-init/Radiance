@@ -1,0 +1,117 @@
+#: locale=en
+
+## Action
+
+### URL
+WebFrame_22F9EEFF_0C1A_2293_4165_411D4444EFEA.url = https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d618.8948776826774!2d73.08951043246331!3d19.203103877971543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79587350b27cb%3A0xb2855bc96fefe998!2sMilan%20Park%20Society!5e1!3m2!1sen!2sin!4v1767861850374!5m2!1sen!2sin
+WebFrame_22F9EEFF_0C1A_2293_4165_411D4444EFEA_mobile.url = https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d618.8948776826774!2d73.08951043246331!3d19.203103877971543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be79587350b27cb%3A0xb2855bc96fefe998!2sMilan%20Park%20Society!5e1!3m2!1sen!2sin!4v1767861850374!5m2!1sen!2sin
+
+## Media
+
+### Title
+panorama_973C422F_842A_435B_41DA_1A76C806C181.label = 10th Floor
+panorama_973C38B2_842A_4F45_41DB_91F5549C59A8.label = 11th Floor
+panorama_973C6F2D_842A_415F_41B1_46DB7153B83E.label = 12th Floor
+panorama_973C45B7_842A_414B_41D8_FFC7F9FC8B45.label = 13th Floor
+panorama_973C9C43_842A_47CB_41C8_7B25CD10EB31.label = 14th Floor
+panorama_973C52DD_842A_40FF_41AE_219BEC59A90B.label = 15th Floor
+panorama_973C99BD_842A_40BF_41DE_C1295FC79840.label = 16th Floor
+panorama_973CB093_842A_5F4B_41C2_367AED778AA5.label = 17th Floor
+panorama_973CE737_842A_414B_41A5_DCD5D78012FD.label = 18th Floor
+panorama_973CFDF3_842A_40CB_41C6_A8B73F0B873B.label = 19th Floor
+panorama_B99ABC0E_997D_1B83_41B3_764EDB4EBA2B.label = 1st Floor
+panorama_973CB474_842A_C7CE_41D2_1FC053B2DCF1.label = 20th Floor
+panorama_973C9B57_842A_C1CB_4194_0FB7F0A3AFEF.label = 21st Floor
+panorama_973F72C2_842A_C0C5_41D5_7D6576F366D4.label = 22nd Floor
+panorama_973F495B_842A_C1FB_41DA_18556AC90B69.label = 23rd Floor
+panorama_86FC931D_996B_0D86_41BA_B8AC3207D431.label = 2nd Floor
+panorama_87CD70DF_996B_0C81_41E0_D6064A7AD64F.label = 3rd Floor
+panorama_87C7336F_9965_0D81_41CD_9952BEE0745F.label = 4th Floor
+panorama_87D1EF80_9965_357E_4170_09EF4DAF40E0.label = 5th Floor
+panorama_87C29E19_9965_778E_41D6_9998AC507D6F.label = 6th Floor
+panorama_84D9EAFE_9965_3C82_41D3_E53E6CD51147.label = 7th Floor
+panorama_973DB508_842B_C145_41AD_A0A460329521.label = 8th Floor
+panorama_973DFB9C_842B_C17D_41DB_98924F4A6204.label = 9th Floor
+panorama_82357F54_9CE7_AA92_41DB_7226AD7BE2F0.label = Day
+panorama_9E585CD0_ABC7_93A8_41DE_295FA5A84C98.label = Evening
+panorama_868BEE8D_99A7_3486_41D9_7F18DF12E74B.label = Location Pano
+panorama_8DC3B0C1_9C9C_B7F2_41D1_D3292FF64534.label = Night
+
+## Skin
+
+### Button
+Button_7DB31382_7065_343F_41D6_641BBE1B2562_mobile.label =   AERIAL VIEW
+Button_7DB31382_7065_343F_41D6_641BBE1B2562.label =   AERIAL VIEW
+Button_ABDBDFB9_9CBC_6992_41E2_5638750D02A0.label =   RENDERS
+Button_ABDBDFB9_9CBC_6992_41E2_5638750D02A0_mobile.label =   RENDERS
+Button_AF03BFBD_847A_40BF_41D3_04B6BC6A422E.label =   WINDOW VIEW
+Button_AF03BFBD_847A_40BF_41D3_04B6BC6A422E_mobile.label =   WINDOW VIEW
+Button_7DB31382_7065_343F_41D6_641BBE1B2562_mobile.pressedLabel = AERIAL VIEW
+Button_7DB31382_7065_343F_41D6_641BBE1B2562.pressedLabel = AERIAL VIEW
+Button_D1A7E2E9_CAD3_B09F_41D9_DBFE2AC395B7.pressedLabel = CONNECTIVITY
+Button_D1A7E2E9_CAD3_B09F_41D9_DBFE2AC395B7.label = CONNECTIVITY
+Button_7DBCA382_7065_343F_41DB_48D975E3D9EC.label = Contact Information
+Button_7DBCA382_7065_343F_41DB_48D975E3D9EC_mobile.label = Contact Information
+Button_B5249837_9CE4_569E_41DE_5B921B6ABE31_mobile.label = DAY 
+Button_B5249837_9CE4_569E_41DE_5B921B6ABE31.label = DAY 
+Button_B5249837_9CE4_569E_41DE_5B921B6ABE31.pressedLabel = DAY 
+Button_B5249837_9CE4_569E_41DE_5B921B6ABE31_mobile.pressedLabel = DAY 
+Button_D0E7E0FF_CAD2_F073_41CC_B99BDDA4B85E.label = EDUCATION
+Button_D0E7E0FF_CAD2_F073_41CC_B99BDDA4B85E.pressedLabel = EDUCATION
+Button_B654177D_9C9C_FA92_418F_1CD4C16160F3_mobile.pressedLabel = EVENING
+Button_B654177D_9C9C_FA92_418F_1CD4C16160F3_mobile.label = EVENING
+Button_B654177D_9C9C_FA92_418F_1CD4C16160F3.label = EVENING
+Button_B654177D_9C9C_FA92_418F_1CD4C16160F3.pressedLabel = EVENING
+Button_7DB37382_7065_343F_41CC_EC41ABCCDE1B.label = Floorplan
+Button_7DB37382_7065_343F_41CC_EC41ABCCDE1B_mobile.label = Floorplan
+Button_D0279C86_CAD3_9095_41D1_290E38C74828.pressedLabel = GARDEN
+Button_D0279C86_CAD3_9095_41D1_290E38C74828.label = GARDEN
+Button_D0E0BB94_CAD3_90B5_41E8_37245E0EEA9C.pressedLabel = HEALTHCARE
+Button_D0E0BB94_CAD3_90B5_41E8_37245E0EEA9C.label = HEALTHCARE
+Button_7DB35382_7065_343F_41C5_CF0EAF3E4CFF.pressedLabel = Location
+Button_7DB35382_7065_343F_41C5_CF0EAF3E4CFF.label = Location
+Button_7DB35382_7065_343F_41C5_CF0EAF3E4CFF_mobile.pressedLabel = Location
+Button_7DB35382_7065_343F_41C5_CF0EAF3E4CFF_mobile.label = Location
+Button_B7731A67_9C9C_6ABE_41DC_018940F9B32F.label = NIGHT
+Button_B7731A67_9C9C_6ABE_41DC_018940F9B32F.pressedLabel = NIGHT
+Button_B7731A67_9C9C_6ABE_41DC_018940F9B32F_mobile.label = NIGHT
+Button_B7731A67_9C9C_6ABE_41DC_018940F9B32F_mobile.pressedLabel = NIGHT
+Button_7DB33382_7065_343F_41B1_0B0F019C1828.label = Panorama List
+Button_7DB33382_7065_343F_41B1_0B0F019C1828_mobile.label = Panorama List
+Button_7DBC8382_7065_343F_4183_17B44518DB40_mobile.label = Photoalbum
+Button_7DBC8382_7065_343F_4183_17B44518DB40.label = Photoalbum
+Button_ABDBDFB9_9CBC_6992_41E2_5638750D02A0_mobile.pressedLabel = RENDERS
+Button_ABDBDFB9_9CBC_6992_41E2_5638750D02A0.pressedLabel = RENDERS
+Button_D176E56E_CAD2_F195_41C5_50A10C28B518.label = SHOPPING & ENTERTAINMENT
+Button_D176E56E_CAD2_F195_41C5_50A10C28B518.pressedLabel = SHOPPING & ENTERTAINMENT
+Button_D6BB69CF_CACE_9093_41CA_BAC8E30E8B4F.pressedLabel = TEMPLE
+Button_D6BB69CF_CACE_9093_41CA_BAC8E30E8B4F.label = TEMPLE
+Button_AF03BFBD_847A_40BF_41D3_04B6BC6A422E_mobile.pressedLabel = WINDOW VIEW
+Button_AF03BFBD_847A_40BF_41D3_04B6BC6A422E.pressedLabel = WINDOW VIEW
+
+### Dropdown
+DropDown_8CB9A346_996B_0D82_41C2_878017326D14.prompt = Floorwise View
+DropDown_8CB9A346_996B_0D82_41C2_878017326D14_mobile.prompt = Floorwise View
+
+### Image
+Image_7DB3C373_7065_34DE_41BA_CF5206137DED.url = skin/Image_7DB3C373_7065_34DE_41BA_CF5206137DED_en.png
+Image_7DB3C373_7065_34DE_41BA_CF5206137DED_mobile.url = skin/Image_7DB3C373_7065_34DE_41BA_CF5206137DED_mobile_en.png
+Image_BD873AD4_9478_3C4B_41E1_8CD5E779D6D2.url = skin/Image_BD873AD4_9478_3C4B_41E1_8CD5E779D6D2_en.jpg
+Image_BD873AD4_9478_3C4B_41E1_8CD5E779D6D2_mobile.url = skin/Image_BD873AD4_9478_3C4B_41E1_8CD5E779D6D2_mobile_en.jpg
+Image_BD87AAD4_9478_3C4B_41BE_0345EF6421AD.url = skin/Image_BD87AAD4_9478_3C4B_41BE_0345EF6421AD_en.jpg
+Image_BD87AAD4_9478_3C4B_41BE_0345EF6421AD_mobile.url = skin/Image_BD87AAD4_9478_3C4B_41BE_0345EF6421AD_mobile_en.jpg
+
+### Multiline Text
+HTMLText_BD872AD4_9478_3C4B_41E0_004DEE953DF2.html = <div style="text-align:left; color:#000; "><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#04a3e1;font-size:1.3vw;font-family:'Oswald';"><B><I>JOHN DOE</I></B></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:1.3vw;font-family:'Oswald';"><I>Licensed Real Estate Salesperson</I></SPAN></SPAN></DIV><p STYLE="margin:0; line-height:0.61vw;"><BR STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-size:0.38vw;font-family:Arial, Helvetica, sans-serif;"/></p><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#999999;font-size:1.3vw;font-family:'Oswald';"><I>Tlf.: +11 111 111 111</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#999999;font-size:1.3vw;font-family:'Oswald';"><I>jhondoe@realestate.com</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#999999;font-size:1.3vw;font-family:'Oswald';"><I>www.loremipsum.com</I></SPAN></SPAN></DIV><p STYLE="margin:0; line-height:0.61vw;"><BR STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-size:0.38vw;font-family:Arial, Helvetica, sans-serif;"/></p><DIV STYLE="text-align:left;font-size:0.72vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:0.72vw;">Mauris aliquet neque quis libero consequat vestibulum. Donec lacinia consequat dolor viverra sagittis. Praesent consequat porttitor risus, eu condimentum nunc. Proin et velit ac sapien luctus efficitur egestas ac augue. Nunc dictum, augue eget eleifend interdum, quam libero imperdiet lectus, vel scelerisque turpis lectus vel ligula. Duis a porta sem. Maecenas sollicitudin nunc id risus fringilla, a pharetra orci iaculis. Aliquam turpis ligula, tincidunt sit amet consequat ac, imperdiet non dolor.</SPAN></SPAN></DIV></div>
+HTMLText_BD872AD4_9478_3C4B_41E0_004DEE953DF2_mobile.html = <div style="text-align:left; color:#000; "><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#04a3e1;font-size:1.3vw;font-family:'Oswald';"><B><I>JOHN DOE</I></B></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:1.3vw;font-family:'Oswald';"><I>Licensed Real Estate Salesperson</I></SPAN></SPAN></DIV><p STYLE="margin:0; line-height:0.61vw;"><BR STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-size:0.38vw;font-family:Arial, Helvetica, sans-serif;"/></p><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#999999;font-size:1.3vw;font-family:'Oswald';"><I>Tlf.: +11 111 111 111</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#999999;font-size:1.3vw;font-family:'Oswald';"><I>jhondoe@realestate.com</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:1.3000000000000012vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#999999;font-size:1.3vw;font-family:'Oswald';"><I>www.loremipsum.com</I></SPAN></SPAN></DIV><p STYLE="margin:0; line-height:0.61vw;"><BR STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-size:0.38vw;font-family:Arial, Helvetica, sans-serif;"/></p><DIV STYLE="text-align:left;font-size:0.72vw;"><SPAN STYLE="display:inline-block; letter-spacing:0vw; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:0.72vw;">Mauris aliquet neque quis libero consequat vestibulum. Donec lacinia consequat dolor viverra sagittis. Praesent consequat porttitor risus, eu condimentum nunc. Proin et velit ac sapien luctus efficitur egestas ac augue. Nunc dictum, augue eget eleifend interdum, quam libero imperdiet lectus, vel scelerisque turpis lectus vel ligula. Duis a porta sem. Maecenas sollicitudin nunc id risus fringilla, a pharetra orci iaculis. Aliquam turpis ligula, tincidunt sit amet consequat ac, imperdiet non dolor.</SPAN></SPAN></DIV></div>
+HTMLText_BD876AD4_9478_3C4B_41D6_3C886AE845B6_mobile.html = <div style="text-align:left; color:#000; "><DIV STYLE="text-align:left;font-size:8.279999999999998vh;"><SPAN STYLE="display:inline-block; letter-spacing:0vh; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#04a3e1;font-size:8.28vh;font-family:'Bebas Neue Bold';">___</SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:4.689999999999998vh;"><SPAN STYLE="display:inline-block; letter-spacing:0vh; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:4.69vh;font-family:'Oswald';"><B><I>LOREM IPSUM</I></B></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:4.689999999999998vh;"><SPAN STYLE="display:inline-block; letter-spacing:0vh; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:4.69vh;font-family:'Oswald';"><B><I>DOLOR SIT AMET</I></B></SPAN></SPAN></DIV></div>
+HTMLText_BD876AD4_9478_3C4B_41D6_3C886AE845B6.html = <div style="text-align:left; color:#000; "><DIV STYLE="text-align:left;font-size:8.279999999999998vh;"><SPAN STYLE="display:inline-block; letter-spacing:0vh; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#04a3e1;font-size:8.28vh;font-family:'Bebas Neue Bold';">___</SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:4.689999999999998vh;"><SPAN STYLE="display:inline-block; letter-spacing:0vh; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:4.69vh;font-family:'Oswald';"><B><I>LOREM IPSUM</I></B></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:4.689999999999998vh;"><SPAN STYLE="display:inline-block; letter-spacing:0vh; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:4.69vh;font-family:'Oswald';"><B><I>DOLOR SIT AMET</I></B></SPAN></SPAN></DIV></div>
+HTMLText_7DB2E382_7065_343F_41C2_951F708170F1.html = <div style="text-align:left; color:#000; "><DIV STYLE="text-align:left;font-size:14px;"><SPAN STYLE="display:inline-block; letter-spacing:0px; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#ffffff;font-size:14px;font-family:'Oswald Regular';"><I>Company Name</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:14px;"><SPAN STYLE="display:inline-block; letter-spacing:0px; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#ffffff;font-size:14px;font-family:'Oswald Regular';"><I>www.loremipsum.com</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:14px;"><SPAN STYLE="display:inline-block; letter-spacing:0px; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#ffffff;font-size:14px;font-family:'Oswald Regular';"><I>info@loremipsum.com</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:14px;"><SPAN STYLE="display:inline-block; letter-spacing:0px; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#ffffff;font-size:14px;font-family:'Oswald Regular';"><I>Tlf.: +11 111 111 111</I></SPAN></SPAN></DIV></div>
+HTMLText_7DB2E382_7065_343F_41C2_951F708170F1_mobile.html = <div style="text-align:left; color:#000; "><DIV STYLE="text-align:left;font-size:7px;"><SPAN STYLE="display:inline-block; letter-spacing:0px; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#ffffff;font-size:7px;font-family:'Oswald Regular';"><I>Company Name</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:7px;"><SPAN STYLE="display:inline-block; letter-spacing:0px; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#ffffff;font-size:7px;font-family:'Oswald Regular';"><I>www.loremipsum.com</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:7px;"><SPAN STYLE="display:inline-block; letter-spacing:0px; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#ffffff;font-size:7px;font-family:'Oswald Regular';"><I>info@loremipsum.com</I></SPAN></SPAN></DIV><DIV STYLE="text-align:left;font-size:7px;"><SPAN STYLE="display:inline-block; letter-spacing:0px; white-space:pre-wrap;color:#000000;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="color:#ffffff;font-size:7px;font-family:'Oswald Regular';"><I>Tlf.: +11 111 111 111</I></SPAN></SPAN></DIV></div>
+
+## Tour
+
+### Description
+
+### Title
+tour.name = RADIANCE
