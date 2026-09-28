@@ -60,7 +60,7 @@ export default function Experience() {
           onLoad={() => setTimeout(() => setLoaded(true), 900)}
           allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer"
           allowFullScreen
-          className={`absolute inset-0 h-full w-full border-0 transition-opacity duration-1000 ${loaded ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-x-0 top-11 bottom-0 h-[calc(100%-2.75rem)] w-full border-0 transition-opacity duration-1000 ${loaded ? "opacity-100" : "opacity-0"}`}
         />
       )}
 
@@ -125,32 +125,36 @@ export default function Experience() {
         )}
       </AnimatePresence>
 
-      {/* Chrome: back, fullscreen, enquire. Top-right is the one corner the
-          3DVista skin leaves free (logo left, lighting top-centre, menu right,
-          playback bottom). */}
-      <div className="pointer-events-none absolute top-0 right-0 z-10 flex items-start justify-end gap-2 p-2 md:gap-3 md:p-5">
+      {/* Chrome: a slim bar above the tour rather than buttons floating over
+          it. The 3DVista skin uses every corner for its own controls in one
+          view or another (floor picker top-right and its list running down
+          the right edge in Window View, category list on Aerial View,
+          transport bar at the bottom), so anything overlaid will cover
+          something; the iframe starts below this bar instead. */}
+      <div className="absolute inset-x-0 top-0 z-10 flex h-11 items-center justify-between gap-2 border-b border-ivory/10 bg-navy px-2 md:px-5">
         <Link
           to="/"
           aria-label="Back to RADIANCE"
-          className="pointer-events-auto flex h-11 min-w-11 items-center justify-center gap-3 bg-navy/80 text-[0.7rem] font-semibold tracking-[0.22em] uppercase backdrop-blur transition-colors hover:bg-navy lg:px-5"
+          className="flex h-9 min-w-9 items-center justify-center gap-3 px-2 text-[0.7rem] font-semibold tracking-[0.22em] uppercase transition-colors hover:text-gold-light"
         >
           <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
             <path d="M18 5H2M6 1L2 5l4 4" />
           </svg>
-          <span className="hidden lg:inline">Back to RADIANCE</span>
+          <span className="hidden sm:inline">Back to RADIANCE</span>
         </Link>
-        <div className="pointer-events-auto flex gap-2 md:gap-3">
+        <img src="/media/logos/radiance-light.webp" alt="" className="pointer-events-none absolute left-1/2 h-8 w-auto -translate-x-1/2" />
+        <div className="flex items-center gap-2 md:gap-3">
           <button
             type="button"
             onClick={toggleFullscreen}
-            className="hidden h-11 w-11 items-center justify-center bg-navy/80 backdrop-blur hover:bg-navy sm:flex"
+            className="hidden h-9 w-9 items-center justify-center transition-colors hover:text-gold-light sm:flex"
             aria-label={isFull ? "Exit full screen" : "Full screen"}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
               {isFull ? <path d="M6 1v5H1M10 1v5h5M6 15v-5H1M10 15v-5h5" /> : <path d="M1 6V1h5M15 6V1h-5M1 10v5h5M15 10v5h-5" />}
             </svg>
           </button>
-          <button type="button" onClick={() => setEnquireOpen(true)} className="btn btn-gold !min-h-11 !px-4 lg:!px-6">
+          <button type="button" onClick={() => setEnquireOpen(true)} className="btn btn-gold !min-h-9 h-9 !px-4 !py-0 lg:!px-6">
             Enquire
           </button>
         </div>
