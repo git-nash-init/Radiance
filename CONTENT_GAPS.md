@@ -13,6 +13,8 @@ The site uses only facts found in the supplied material. The items below are mis
 - **A walkthrough film without on-screen labels**, if a cleaner hero or amenity loop is wanted.
 
 ## To verify
+- **Kids' Play Area** (added after the client's 29 Sep call). The client supplied no separate render or brochure copy, only a few seconds in the AI film. The image is a still cut from that film (`scripts/source-frames/kids-play.jpg`, logo cropped out) and the sentence is worded from what the render shows (climbing wall, colourful flooring, drawing easel). Please have the client confirm the wording and, ideally, send a proper render.
+- **"Adinarayan first".** Implemented as reading order: the Adinarayan logo and name come first in the nav and hero, and RADIANCE stays the largest word because this is the launch being advertised. Say so if the client wants Adinarayan larger.
 - **Map pin.** It is taken from the Google Maps embed inside the client's 3DVista tour ("Milan Park Society", 19.203104, 73.08951). Please confirm this is the RADIANCE plot, or share a Google Business Profile link.
 - **"Holy Angle School".** Kept exactly as printed in the brochure. Likely "Holy Angel". Please confirm the spelling.
 - **"Elevationg Lives".** A typo in the brochure and profile; the site uses "Elevating Lives".

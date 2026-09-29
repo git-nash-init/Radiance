@@ -10,6 +10,9 @@ export function LenisProvider({ children }: { children: ReactNode }) {
   // Pinned/scrubbed sections measure the page; re-measure once media has loaded.
   useEffect(() => {
     const refresh = () => ScrollTrigger.refresh();
+    // Web fonts arriving late reflow every heading, which moves the pinned
+    // sections' start/end positions — re-measure when they land.
+    document.fonts?.ready.then(refresh).catch(() => {});
     if (document.readyState === "complete") return;
     window.addEventListener("load", refresh, { once: true });
     return () => window.removeEventListener("load", refresh);

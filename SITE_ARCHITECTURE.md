@@ -1,19 +1,23 @@
 # Site architecture
 
 ## Page flow (`/`)
-1. **Hero:** a muted drone-orbit loop of the tower, the RADIANCE wordmark, "Explore the Experience" / "Enquire now", "Watch the film" and the RERA number.
-2. **Intro (#project):** positioning, brochure-derived copy, developer stats and the address card.
-3. **Unveiling:** a pinned canvas scrubbed by scroll through 72 frames of the gold-drape reveal from the client's film. This is the site's "3D camera move", made from real footage rather than invented geometry.
-4. **Signature architecture:** brochure p5 pillars with the night and dusk renders.
-5. **Immersive experience (#experience):** a draggable 360° preview, the tour features, and "Enter the experience" → `/experience`.
-6. **Day · Evening · Night:** a pinned crossfade across the three real renders of the same street view.
-7. **Amenities (#amenities):** an index and image stage. Copy comes from the brochure; labels come from the client's films.
-8. **Gallery (#gallery):** 10 renders in a keyboard-navigable lightbox.
-9. **Connectivity (#location):** the brochure's 5 destinations and minutes, drive-time rings, a click-to-load Google Map and directions.
-10. **Developer (#developer):** since 2002, the founders, 264K built-up area, a reel of the 13 completed projects, the 36,700 sq ft landbank and the group companies.
-11. **Downloads:** the brochure and company profile, both gated.
-12. **Enquire (#enquire):** a lead form, call, email and WhatsApp.
-13. **Footer:** both logos, both addresses, the RERA disclaimer and legal links.
+1. **Hero:** a muted drone-orbit loop of the tower, the Adinarayan logo and name first, then the RADIANCE wordmark, "Explore the Experience" / "Enquire now", "Watch the film" and the RERA number.
+2. **Developer profile (#developer):** directly under the hero: since 2002, the two directors, the vision, stats and group companies.
+3. **Intro (#project):** positioning, brochure-derived copy and the address card.
+4. **Unveiling:** a pinned canvas scrubbed by scroll through 72 frames of the gold-drape reveal from the client's film. This is the site's "3D camera move", made from real footage rather than invented geometry.
+5. **Signature architecture:** brochure p5 pillars with the night and dusk renders.
+6. **Immersive experience (#experience):** a draggable 360° preview, the tour features, and "Enter the experience" → `/experience`.
+7. **Day · Evening · Night:** a pinned scroll section over the three real renders of the same street view. Progress is read from the section's real position every frame (`useStickyProgress`), so it stays in sync on phones. It drives the crossfade, a slow zoom, a warm/blue colour grade, a sun→moon track and a running clock. On phones the heading, image and controls are a flex column that fits one screen, so the tower is never clipped.
+8. **Amenities (#amenities):** an index and image stage: pool, gym, indoor games, reading space, party hall and the kids' play area. Copy comes from the brochure; labels and the kids' still come from the client's films.
+9. **Gallery (#gallery):** 10 renders in a keyboard-navigable lightbox.
+10. **Connectivity (#location):** the brochure's 5 destinations and minutes, drive-time rings, an embedded Google Map with the plot pinned, and directions.
+11. **Projects teaser (#projects):** RADIANCE as the ongoing project, three featured completed projects and a link to `/projects`.
+12. **Downloads:** brochure and company profile, both gated.
+13. **Enquire (#enquire):** lead form, call, email and WhatsApp.
+14. **Footer:** both logos, both addresses, the RERA disclaimer and legal links.
+
+## `/projects`
+Header stats, the ongoing project (RADIANCE, with links to the story, the tour and the enquiry form), the future project and 36,700 sq ft landbank, and all 13 completed projects with photo, year, area and units.
 
 ## `/experience`
 - An intro overlay, then an iframe of `/virtual-tour/index.htm` (same origin).

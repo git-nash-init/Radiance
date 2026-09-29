@@ -155,5 +155,16 @@
       1500
     ],
     "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABwBQCdASoYABIAPu1qrlCppaQiqAqpMB2JYwCdMt8BsrUg1PptsCDaoaugpYFFj4KV5kwAAP5ledZ+Mf4RlZ0mpHc5eOJyapowQAVERyeoa9tzXd+Ji4F+AKUlx7Dl7AKeuEJrnUMII8lC4KF/qHiefLJ3jXXy/DWctb3o3pVNgfpvwI65PhVaMAAAAA=="
+  },
+  "kids-play": {
+    "role": "amenity",
+    "width": 2560,
+    "height": 1636,
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAACwBACdASoYAA8APu1iqU2ppaQiMAgBMB2JbACdMoR3BtABoksCm/Vf5okpYsUwAKDKtOTPfkaaF84P+tjkG2crhMGtMeMKA3yzcV3Fc+OBhmXOHRFvFfC8ABAcYQPTQ6+WW9sJUiLsc/c9XSbRgGIUyeuSqMJDx4NIUr/EUbHFu4qxf9hDwlGDGQAAAA=="
   }
 }

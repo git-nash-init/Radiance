@@ -94,8 +94,12 @@ export function Hero() {
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
 
       <div className="hero-content relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        <p className="hero-eyebrow eyebrow !text-gold-light">{developer.name} presents</p>
-        <div className="hero-rule gold-rule mt-7 w-40 origin-center" />
+        {/* Developer first: the logo (on an ivory chip so it reads over the film), then its name. */}
+        <div className="hero-eyebrow flex flex-col items-center gap-4">
+          <img src="/media/logos/adinarayan.webp" alt={developer.name} width="640" height="800" className="h-16 w-auto rounded-[2px] bg-ivory p-1.5 md:h-20" />
+          <p className="eyebrow !text-gold-light [text-shadow:0_1px_14px_rgba(14,22,40,0.95),0_0_3px_rgba(14,22,40,0.6)]">{developer.name} presents</p>
+        </div>
+        <div className="hero-rule gold-rule mt-6 w-40 origin-center" />
         <h1 aria-label={project.name} className="hero-word wordmark mt-8 flex overflow-hidden text-[clamp(3rem,11vw,10rem)] leading-none !tracking-[0.18em] text-ivory md:!tracking-[0.24em]">
           {letters.map((l, i) => (
             <span key={i} className="inline-block" aria-hidden="true">

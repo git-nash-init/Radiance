@@ -10,6 +10,7 @@ import { ScrollTrigger } from "./lib/gsap";
 import Home from "./pages/Home";
 
 const Experience = lazy(() => import("./pages/Experience"));
+const Projects = lazy(() => import("./pages/Projects"));
 const Privacy = lazy(() => import("./pages/Legal").then((m) => ({ default: m.Privacy })));
 const Terms = lazy(() => import("./pages/Legal").then((m) => ({ default: m.Terms })));
 
@@ -61,6 +62,7 @@ export default function App() {
             <Route path="/experience" element={<Experience />} />
             <Route element={<SiteLayout />}>
               <Route index element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, m as motion } from "framer-motion";
-import { navLinks } from "../../data/navigation";
+import { navLinks, type NavItem } from "../../data/navigation";
 import { project } from "../../data/project";
 import { useLenis, useScrollTo } from "../../hooks/useLenis";
 
@@ -52,6 +52,25 @@ export function Nav() {
     else navigate("/" + href);
   };
 
+  /** Anchor items glide within the home page; route items are normal links. */
+  const renderLink = (l: NavItem, className: string) =>
+    l.to ? (
+      <Link to={l.to} onClick={() => setOpen(false)} className={className}>
+        {l.label}
+      </Link>
+    ) : (
+      <a
+        href={l.href}
+        onClick={(e) => {
+          e.preventDefault();
+          go(l.href!);
+        }}
+        className={className}
+      >
+        {l.label}
+      </a>
+    );
+
   const linkCls = `link-underline text-[0.72rem] font-semibold uppercase tracking-[0.24em] transition-colors ${
     solid ? "text-navy hover:text-gold" : "text-ivory/90 hover:text-ivory"
   }`;
@@ -63,32 +82,34 @@ export function Nav() {
       </a>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,box-shadow,padding,transform] duration-500 ease-[var(--ease-cine)] ${
-          solid ? "bg-ivory/85 py-3 shadow-[0_1px_0_rgba(14,22,40,0.08)] backdrop-blur-md" : "py-6"
+          solid ? "bg-ivory/95 py-3 shadow-[0_1px_0_rgba(14,22,40,0.08)] backdrop-blur-md" : "py-6"
         } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
       >
         <nav className="container-x flex items-center justify-between gap-6" aria-label="Primary">
-          <Link to="/" onClick={() => onHome && lenis?.scrollTo(0)} className="flex items-center gap-3" aria-label={`${project.name} home`}>
+          <Link
+            to="/"
+            onClick={() => onHome && lenis?.scrollTo(0)}
+            className="flex items-center gap-3"
+            aria-label={`Adinarayan ${project.name} home`}
+          >
+            {/* Adinarayan first, then the project. The ivory chip keeps the
+                logo legible over the dark hero film. */}
+            <img
+              src="/media/logos/adinarayan.webp"
+              alt=""
+              className={`w-auto rounded-[2px] bg-ivory p-1 transition-all duration-700 ${solid ? "h-10" : "h-12"}`}
+            />
+            <span className={`h-8 w-px transition-colors duration-700 ${solid ? "bg-navy/25" : "bg-ivory/35"}`} aria-hidden="true" />
             <img
               src={solid ? "/media/logos/radiance-dark.webp" : "/media/logos/radiance-light.webp"}
               alt=""
-              className={`w-auto transition-all duration-700 ${solid ? "h-11" : "h-14"}`}
+              className={`w-auto transition-all duration-700 ${solid ? "h-10" : "h-12"}`}
             />
           </Link>
 
-          <ul className="hidden items-center gap-8 lg:flex">
+          <ul className="hidden items-center gap-7 xl:flex">
             {navLinks.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    go(l.href);
-                  }}
-                  className={linkCls}
-                >
-                  {l.label}
-                </a>
-              </li>
+              <li key={l.href ?? l.to}>{renderLink(l, linkCls)}</li>
             ))}
           </ul>
 
@@ -105,7 +126,7 @@ export function Nav() {
             </a>
             <button
               type="button"
-              className={`flex h-11 w-11 flex-col items-center justify-center gap-[6px] lg:hidden ${solid ? "text-navy" : "text-ivory"}`}
+              className={`flex h-11 w-11 flex-col items-center justify-center gap-[6px] xl:hidden ${solid ? "text-navy" : "text-ivory"}`}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -122,7 +143,7 @@ export function Nav() {
         {open && (
           <motion.div
             id="mobile-menu"
-            className="fixed inset-0 z-40 flex flex-col bg-navy px-6 pt-28 pb-10 text-ivory lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-navy px-6 pt-28 pb-10 text-ivory xl:hidden"
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
@@ -130,17 +151,8 @@ export function Nav() {
           >
             <ul className="flex flex-col gap-2">
               {[...navLinks, { label: "Enquire", href: "#enquire" }].map((l, i) => (
-                <motion.li key={l.href} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 + i * 0.05, duration: 0.7 }}>
-                  <a
-                    href={l.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      go(l.href);
-                    }}
-                    className="display block py-2 text-4xl"
-                  >
-                    {l.label}
-                  </a>
+                <motion.li key={l.href ?? l.to} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 + i * 0.05, duration: 0.7 }}>
+                  {renderLink(l, "display block py-2 text-4xl")}
                 </motion.li>
               ))}
             </ul>

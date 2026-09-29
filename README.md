@@ -19,6 +19,7 @@ Copy `.env.example` to `.env` and set `VITE_LEADS_ENDPOINT` once the Apps Script
 | Route | What |
 |---|---|
 | `/` | The landing page (all sections) |
+| `/projects` | Ongoing (RADIANCE), landbank and all completed projects |
 | `/experience` | Full-screen 3DVista tour. The iframe mounts only after "Enter experience". |
 | `/privacy`, `/terms` | Legal pages (privacy, RERA disclaimer) |
 

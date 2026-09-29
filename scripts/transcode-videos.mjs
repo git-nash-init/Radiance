@@ -5,8 +5,11 @@
 //   film-*.mp4        full voice-over film for the "Watch the Film" modal
 //   scrub/*.webp      the tower "unveiling" shot from the AI cut, as frames for
 //                     the pinned scroll-scrub section
+//   source-frames/    stills for amenities that have no separate render (Kids'
+//                     Play Area), cropped clear of the corner logo; they feed
+//                     scripts/optimize-images.mjs
 //
-// Usage: node scripts/transcode-videos.mjs [hero|film|scrub|all]
+// Usage: node scripts/transcode-videos.mjs [hero|film|scrub|stills|all]
 import { spawnSync } from "node:child_process";
 import { mkdirSync, readdirSync, rmSync } from "node:fs";
 import path from "node:path";
@@ -70,7 +73,17 @@ function scrub() {
   }
 }
 
+// Kids' Play Area: the client supplied no separate render, only this shot in
+// the AI film (16:9, AB logo watermark in the top-right ~90-97% of the width).
+// Keeping the left 88% drops the watermark; 143s = kids on the climbing wall.
+const FRAMES = path.join(ROOT, "scripts", "source-frames");
+function stills() {
+  mkdirSync(FRAMES, { recursive: true });
+  ff(["-ss", "143", "-i", AI, "-frames:v", "1", "-vf", "crop=iw*0.88:ih:0:0,scale=2560:-2:flags=lanczos", "-q:v", "2", path.join(FRAMES, "kids-play.jpg")]);
+}
+
 const task = process.argv[2] ?? "all";
 if (task === "hero" || task === "all") hero();
 if (task === "scrub" || task === "all") scrub();
 if (task === "film" || task === "all") film();
+if (task === "stills" || task === "all") stills();

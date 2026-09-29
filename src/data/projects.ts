@@ -29,3 +29,22 @@ export const completedProjects: CompletedProject[] = [
   { name: "Satam Maharaj Mandir", location: "Ambernath", image: img("satam-maharaj-mandir") },
   { name: "Shree Shriya CHS", location: "Badlapur East", image: img("shree-shriya") },
 ];
+
+// Ongoing project and landbank — company profile pp. 18–19.
+export const ongoingProject = {
+  name: "RADIANCE",
+  location: "Dombivli East",
+  positioning: "Premium Lifestyle Residence",
+  image: "aerial-day",
+} as const;
+
+export const landbank = {
+  area: "36,700 sq ft",
+  location: "Dombivli East",
+  // Profile p19, lightly condensed.
+  copy: "We own a chunk of land at the prime location of Dombivli East. The proposed project of 36,700 sq ft will be developed in the near future.",
+  image: "/media/company/landbank.webp",
+} as const;
+
+// Shown on the home page teaser (newest, and the largest by built-up area).
+export const featuredCompleted = ["Riddhi Siddhi Row House", "Guru Dev", "Guru Vishnu"];

@@ -48,6 +48,11 @@ export function Footer() {
                 </a>
               </li>
               <li>
+                <Link to="/projects" className="link-underline hover:text-ivory">
+                  Projects
+                </Link>
+              </li>
+              <li>
                 <button type="button" className="link-underline hover:text-ivory" onClick={() => openDocument("brochure")}>
                   Download brochure
                 </button>

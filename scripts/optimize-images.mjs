@@ -30,6 +30,9 @@ const SOURCES = [
   { id: "library", src: WA("2.07.54 PM (1)"), role: "amenity" },
   { id: "party-hall", src: WA("2.07.54 PM (3)"), role: "amenity" },
   { id: "party-hall-2", src: WA("2.07.54 PM (2)"), role: "amenity" },
+  // Kids' Play Area: no separate render was supplied; still cut from the AI
+  // film by `node scripts/transcode-videos.mjs stills` (logo cropped out).
+  { id: "kids-play", src: "scripts/source-frames/kids-play.jpg", role: "amenity" },
 ];
 
 const WIDTHS = [640, 1280, 1920, 2560];
@@ -38,7 +41,7 @@ async function run() {
   mkdirSync(OUT, { recursive: true });
   const manifest = {};
   for (const { id, src, role } of SOURCES) {
-    const file = path.join(SRC, src);
+    const file = src.startsWith("scripts/") ? path.join(ROOT, src) : path.join(SRC, src);
     const meta = await sharp(file, { limitInputPixels: false }).metadata();
     const widths = WIDTHS.filter((w) => w < meta.width).concat(meta.width < 2560 ? [meta.width] : []);
     const uniq = [...new Set(widths)].sort((a, b) => a - b);

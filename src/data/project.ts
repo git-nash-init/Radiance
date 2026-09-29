@@ -100,10 +100,19 @@ export const amenities = [
     image: "party-hall",
     source: "Brochure p4",
   },
+  {
+    id: "kids",
+    title: "Your kids' play area",
+    // Wording follows the brochure's "Your … inside the community" pattern; it
+    // states only what the client's own render shows. Client to confirm.
+    copy: "A bright, dedicated play space for children — with a climbing wall, colourful flooring and room to draw and play — inside the community.",
+    image: "kids-play",
+    source: "Film label + render still",
+  },
 ] as const;
 
 // Additional spaces labelled in the client's walkthrough films.
-export const alsoFeatured = ["Entrance Gate", "Entrance Lobby", "Waiting Area for Visitors", "Stack Parking", "Recreational Floor", "Kids' Play Area"];
+export const alsoFeatured = ["Entrance Gate", "Entrance Lobby", "Waiting Area for Visitors", "Stack Parking", "Recreational Floor"];
 
 // Tour categories recovered from the 3DVista project.
 export const tourFeatures = [

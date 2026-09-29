@@ -10,6 +10,7 @@ import { Amenities } from "../components/sections/Amenities";
 import { Gallery } from "../components/sections/Gallery";
 import { Connectivity } from "../components/sections/Connectivity";
 import { Developer } from "../components/sections/Developer";
+import { ProjectsTeaser } from "../components/sections/ProjectsTeaser";
 import { Brochures } from "../components/sections/Brochures";
 import { Enquire } from "../components/sections/Enquire";
 import { useLenis } from "../hooks/useLenis";
@@ -20,7 +21,7 @@ export default function Home() {
   const { hash } = useLocation();
   const lenis = useLenis();
   useDocumentMeta({
-    title: "RADIANCE, Dombivli East — Premium Lifestyle Residence | Adinarayan Buildcon LLP",
+    title: "Adinarayan RADIANCE, Dombivli East — Premium Lifestyle Residence | Adinarayan Buildcon LLP",
     path: "/",
   });
 
@@ -42,6 +43,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Developer />
       <Intro />
       <Unveiling />
       <Living />
@@ -50,7 +52,7 @@ export default function Home() {
       <Amenities />
       <Gallery />
       <Connectivity />
-      <Developer />
+      <ProjectsTeaser />
       <Brochures />
       <Enquire />
     </>
