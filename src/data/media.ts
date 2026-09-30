@@ -41,7 +41,7 @@ export const videos = {
 
 // Scroll-scrub frames of the tower "unveiling" (from the client's AI film).
 export const scrub = {
-  count: 72,
+  count: 62,
   aspect: 860 / 948,
   frame: (i: number, mobile: boolean) => `/media/scrub/${mobile ? "mobile" : "desktop"}/${String(i + 1).padStart(3, "0")}.webp`,
 };

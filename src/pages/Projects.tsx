@@ -68,13 +68,13 @@ export default function Projects() {
               MahaRERA No. <span className="text-navy">{project.rera}</span>
             </p>
             <div className="mt-10 flex flex-wrap gap-4" data-reveal="up">
-              <Link to={{ pathname: "/", hash: "#project" }} className="btn btn-gold">
+              <Link to="/radiance" className="btn btn-gold">
                 Explore RADIANCE
               </Link>
               <Link to="/experience" className="btn btn-ghost-dark">
                 Virtual tour
               </Link>
-              <Link to={{ pathname: "/", hash: "#enquire" }} className="btn btn-ghost-dark">
+              <Link to={{ pathname: "/radiance", hash: "#enquire" }} className="btn btn-ghost-dark">
                 Enquire
               </Link>
             </div>
@@ -144,7 +144,7 @@ export default function Projects() {
             See what we're building <em className="text-gold-light">next.</em>
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4" data-reveal="up">
-            <Link to={{ pathname: "/", hash: "#enquire" }} className="btn btn-gold">
+            <Link to={{ pathname: "/radiance", hash: "#enquire" }} className="btn btn-gold">
               Enquire about RADIANCE
             </Link>
             <Link to="/" className="btn btn-ghost-light">

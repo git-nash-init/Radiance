@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, m as motion } from "framer-motion";
-import { navLinks, type NavItem } from "../../data/navigation";
+import type { NavItem } from "../../data/navigation";
 import { project } from "../../data/project";
+import { useBrand } from "../../hooks/useBrand";
 import { useLenis, useScrollTo } from "../../hooks/useLenis";
 
 /** Transparent over the hero, ivory glass once scrolled; full-screen menu on mobile. */
@@ -15,7 +16,9 @@ export function Nav() {
   const lenis = useLenis();
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const onHome = pathname === "/";
+  const brand = useBrand();
+  // Transparent over the hero only on a brand's own landing page.
+  const onHome = pathname === brand.path;
   const solid = scrolled || !onHome;
 
   // Hide the header on scroll-down, bring it back on scroll-up (or near the
@@ -49,7 +52,7 @@ export function Nav() {
   const go = (href: string) => {
     setOpen(false);
     if (onHome) scrollTo(href);
-    else navigate("/" + href);
+    else navigate(brand.path + href);
   };
 
   /** Anchor items glide within the home page; route items are normal links. */
@@ -86,29 +89,25 @@ export function Nav() {
         } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
       >
         <nav className="container-x flex items-center justify-between gap-6" aria-label="Primary">
-          <Link
-            to="/"
-            onClick={() => onHome && lenis?.scrollTo(0)}
-            className="flex items-center gap-3"
-            aria-label={`Adinarayan ${project.name} home`}
-          >
-            {/* Adinarayan first, then the project. The ivory chip keeps the
-                logo legible over the dark hero film. */}
+          <Link to={brand.path} onClick={() => onHome && lenis?.scrollTo(0)} className="flex items-center gap-3" aria-label={`${brand.name} home`}>
+            {/* The company logo is a full-colour mark on white, so it sits on an
+                ivory chip that stays legible over the dark hero film. */}
             <img
               src="/media/logos/adinarayan.webp"
               alt=""
               className={`w-auto rounded-[2px] bg-ivory p-1 transition-all duration-700 ${solid ? "h-10" : "h-12"}`}
             />
-            <span className={`h-8 w-px transition-colors duration-700 ${solid ? "bg-navy/25" : "bg-ivory/35"}`} aria-hidden="true" />
-            <img
-              src={solid ? "/media/logos/radiance-dark.webp" : "/media/logos/radiance-light.webp"}
-              alt=""
-              className={`w-auto transition-all duration-700 ${solid ? "h-10" : "h-12"}`}
-            />
+            {/* The RADIANCE mark appears only on the RADIANCE page. */}
+            {brand.key === "radiance" && (
+              <>
+                <span className={`h-8 w-px transition-colors duration-700 ${solid ? "bg-navy/25" : "bg-ivory/35"}`} aria-hidden="true" />
+                <img src={solid ? brand.logoDark : brand.logoLight} alt="" className={`w-auto transition-all duration-700 ${solid ? "h-10" : "h-12"}`} />
+              </>
+            )}
           </Link>
 
           <ul className="hidden items-center gap-7 xl:flex">
-            {navLinks.map((l) => (
+            {brand.nav.map((l) => (
               <li key={l.href ?? l.to}>{renderLink(l, linkCls)}</li>
             ))}
           </ul>
@@ -150,17 +149,17 @@ export function Nav() {
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           >
             <ul className="flex flex-col gap-2">
-              {[...navLinks, { label: "Enquire", href: "#enquire" }].map((l, i) => (
+              {[...brand.nav, { label: "Enquire", href: "#enquire" }].map((l, i) => (
                 <motion.li key={l.href ?? l.to} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 + i * 0.05, duration: 0.7 }}>
                   {renderLink(l, "display block py-2 text-4xl")}
                 </motion.li>
               ))}
             </ul>
             <div className="mt-auto space-y-2 text-sm text-ivory/60">
-              <a href={`tel:${project.phone.tel}`} className="block text-lg text-ivory">
-                {project.phone.display}
+              <a href={`tel:${brand.phone.tel}`} className="block text-lg text-ivory">
+                {brand.phone.display}
               </a>
-              <p>MahaRERA No. {project.rera}</p>
+              {brand.key === "radiance" ? <p>MahaRERA No. {project.rera}</p> : <p>{brand.email}</p>}
             </div>
           </motion.div>
         )}

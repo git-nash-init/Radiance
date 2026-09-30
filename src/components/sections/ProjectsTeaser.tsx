@@ -28,7 +28,7 @@ export function ProjectsTeaser() {
         </div>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-12">
-          <article className="group relative overflow-hidden lg:col-span-7" data-reveal="up">
+          <Link to="/radiance" className="group relative block overflow-hidden lg:col-span-7" data-reveal="up" aria-label="Explore RADIANCE, the ongoing project">
             <div className="aspect-[4/3] overflow-hidden lg:aspect-auto lg:h-full lg:min-h-[28rem]">
               <Picture
                 id={ongoingProject.image}
@@ -45,8 +45,14 @@ export function ProjectsTeaser() {
               <p className="mt-2 text-sm text-ivory/70">
                 {ongoingProject.positioning} · {ongoingProject.location} · MahaRERA {project.rera}
               </p>
+              <span className="mt-5 inline-flex items-center gap-3 text-[0.7rem] font-semibold tracking-[0.22em] text-gold-light uppercase">
+                Explore RADIANCE
+                <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+                  <path d="M0 5h16M12 1l4 4-4 4" />
+                </svg>
+              </span>
             </div>
-          </article>
+          </Link>
 
           <ul className="grid gap-6 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
             {featured.map((p, i) => (

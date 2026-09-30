@@ -11,9 +11,11 @@ type Props = {
   successTitle?: string;
   successBody?: string;
   tone?: "light" | "dark";
+  /** Options for the "Interested in" select. */
+  interests?: string[];
 };
 
-const INTERESTS = ["Site visit", "Pricing & availability", "Brochure", "General enquiry"];
+const DEFAULT_INTERESTS = ["Site visit", "Pricing & availability", "Brochure", "General enquiry"];
 
 type Errors = Partial<Record<keyof Lead, string>>;
 
@@ -25,6 +27,7 @@ export function LeadForm({
   successTitle = "Thank you.",
   successBody = "Our team will call you shortly to take your RADIANCE enquiry forward.",
   tone = "light",
+  interests = DEFAULT_INTERESTS,
 }: Props) {
   const uid = useId();
   const [values, setValues] = useState<Lead>({ name: "", phone: "", email: "", interest: "", message: "", source, consent: false, website: "" });
@@ -150,7 +153,7 @@ export function LeadForm({
               </label>
               <select id={`${uid}-interest`} className={fieldCls} value={values.interest} onChange={(e) => set("interest", e.target.value)}>
                 <option value="">Select</option>
-                {INTERESTS.map((i) => (
+                {interests.map((i) => (
                   <option key={i} value={i}>
                     {i}
                   </option>
@@ -179,7 +182,7 @@ export function LeadForm({
             aria-describedby={describe("consent")}
           />
           <span>
-            I agree to be contacted by Adinarayan Buildcon LLP about {project.name} by call, SMS, WhatsApp or email, even if my number is on the DND
+            I agree to be contacted by Adinarayan Buildcon LLP about my enquiry by call, SMS, WhatsApp or email, even if my number is on the DND
             registry. See the{" "}
             <a href="/privacy" className="underline underline-offset-4 hover:text-gold">
               privacy policy

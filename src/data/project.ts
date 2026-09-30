@@ -49,7 +49,7 @@ export const developer = {
   office: {
     lines: ["Shop No. 67–68, 2nd Floor, P P Chamber", "Near KDMC Office, Dombivli East – 421201"],
   },
-  phone: { display: "+91 99701 83779", tel: "+919970183779" },
+  phone: { display: "+91 99701 83779", tel: "+919970183779", whatsapp: "919970183779" },
   email: "adinarayanbuildconllp@gmail.com",
   gstin: "27ACEFA2398B1ZL",
 } as const;
@@ -124,7 +124,7 @@ export const tourFeatures = [
 
 export const documents = {
   brochure: { title: "RADIANCE Brochure", file: "/documents/Radiance-Brochure.pdf", size: "5.7 MB", cover: "/media/company/brochure-cover.webp" },
-  profile: { title: "Company Profile", file: "/documents/Adinarayan-Buildcon-Profile.pdf", size: "14.7 MB", cover: "/media/company/profile-cover.webp" },
+  profile: { title: "Company Profile", file: "/documents/Adinarayan-Buildcon-Profile.pdf", size: "14.7 MB", cover: "/media/company/founders-page.webp" },
 } as const;
 
 export type DocumentKey = keyof typeof documents;

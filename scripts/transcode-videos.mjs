@@ -61,13 +61,13 @@ function film() {
     "-quality", "80", path.join(OUT, "film-poster.webp")]);
 }
 
-// Unveiling: 1.8s–7.8s of the AI cut, content column x=940..2900 at 3840x2160.
+// Unveiling: 1.8s–6.9s of the AI cut (it dissolves into the logo splash after ~7s), content column x=940..2900 at 3840x2160.
 function scrub() {
   for (const [w, dir] of [[860, "desktop"], [540, "mobile"]]) {
     const out = path.join(SCRUB, dir);
     rmSync(out, { recursive: true, force: true });
     mkdirSync(out, { recursive: true });
-    ff(["-ss", "1.8", "-t", "6", "-i", AI, "-vf", `fps=12,crop=1960:2160:940:0,scale=${w}:-2:flags=lanczos`,
+    ff(["-ss", "1.8", "-t", "5.1", "-i", AI, "-vf", `fps=12,crop=1960:2160:940:0,scale=${w}:-2:flags=lanczos`,
       "-c:v", "libwebp", "-quality", dir === "desktop" ? "62" : "58", path.join(out, "%03d.webp")]);
     console.log(dir, readdirSync(out).length, "frames");
   }

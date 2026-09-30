@@ -1,59 +1,33 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Hero } from "../components/sections/Hero";
-import { Intro } from "../components/sections/Intro";
-import { Unveiling } from "../components/sections/Unveiling";
-import { ExperienceTeaser } from "../components/sections/ExperienceTeaser";
-import { DayNight } from "../components/sections/DayNight";
-import { Living } from "../components/sections/Living";
-import { Amenities } from "../components/sections/Amenities";
-import { Gallery } from "../components/sections/Gallery";
-import { Connectivity } from "../components/sections/Connectivity";
 import { Developer } from "../components/sections/Developer";
 import { ProjectsTeaser } from "../components/sections/ProjectsTeaser";
+import { Living } from "../components/sections/Living";
+import { DayNight } from "../components/sections/DayNight";
+import { ExperienceTeaser } from "../components/sections/ExperienceTeaser";
 import { Brochures } from "../components/sections/Brochures";
 import { Enquire } from "../components/sections/Enquire";
-import { useLenis } from "../hooks/useLenis";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
-import { ScrollTrigger, prefersReducedMotion } from "../lib/gsap";
+import { useHashScroll } from "../hooks/useHashScroll";
 
+/** The company (Adinarayan Buildcon LLP) home page. The RADIANCE project lives at /radiance. */
 export default function Home() {
-  const { hash } = useLocation();
-  const lenis = useLenis();
   useDocumentMeta({
-    title: "Adinarayan RADIANCE, Dombivli East — Premium Lifestyle Residence | Adinarayan Buildcon LLP",
+    title: "Adinarayan Buildcon LLP — Crafting dreams since 2002 | Kalyan Dombivli",
+    description:
+      "Adinarayan Buildcon LLP: developers in Kalyan Dombivli since 2002, with 13 completed projects and RADIANCE, a premium lifestyle residence now launching in Dombivli East.",
     path: "/",
   });
-
-  // Arriving with /#section: wait until smooth scrolling is ready (or motion
-  // is reduced), let layout settle, then glide there.
-  useEffect(() => {
-    if (!hash) return;
-    if (!lenis && !prefersReducedMotion()) return;
-    const t = setTimeout(() => {
-      ScrollTrigger.refresh();
-      const el = document.querySelector(hash) as HTMLElement | null;
-      if (!el) return;
-      if (lenis) lenis.scrollTo(el, { duration: 1.6 });
-      else el.scrollIntoView();
-    }, 500);
-    return () => clearTimeout(t);
-  }, [hash, lenis]);
+  useHashScroll();
 
   return (
     <>
-      <Hero />
+      <Hero variant="adinarayan" />
       <Developer />
-      <Intro />
-      <Unveiling />
-      <Living />
-      <ExperienceTeaser />
-      <DayNight />
-      <Amenities />
-      <Gallery />
-      <Connectivity />
       <ProjectsTeaser />
-      <Brochures />
+      <Living />
+      <DayNight />
+      <ExperienceTeaser />
+      <Brochures docs={["profile"]} />
       <Enquire />
     </>
   );

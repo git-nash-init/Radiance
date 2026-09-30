@@ -2,7 +2,8 @@
 // Sent as text/plain so the browser skips the CORS preflight Apps Script
 // can't answer; Apps Script parses the JSON body itself.
 
-export type LeadSource = "enquiry" | "brochure" | "profile" | "experience";
+/** Where the lead came from: "company" = Adinarayan home page, "enquiry" = RADIANCE page. */
+export type LeadSource = "enquiry" | "company" | "brochure" | "profile" | "experience";
 
 export type Lead = {
   name: string;

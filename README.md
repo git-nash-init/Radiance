@@ -18,7 +18,8 @@ Copy `.env.example` to `.env` and set `VITE_LEADS_ENDPOINT` once the Apps Script
 ## Routes
 | Route | What |
 |---|---|
-| `/` | The landing page (all sections) |
+| `/` | **Adinarayan Buildcon LLP** home page: profile, group companies, projects, Day/Night, tour teaser, company-profile download, company enquiry |
+| `/radiance` | **RADIANCE** landing page (the marketing link): intro, unveiling, tour, Day/Night, amenities, gallery, location, brochure download, RADIANCE enquiry |
 | `/projects` | Ongoing (RADIANCE), landbank and all completed projects |
 | `/experience` | Full-screen 3DVista tour. The iframe mounts only after "Enter experience". |
 | `/privacy`, `/terms` | Legal pages (privacy, RERA disclaimer) |

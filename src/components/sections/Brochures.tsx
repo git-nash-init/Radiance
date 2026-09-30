@@ -1,34 +1,44 @@
 import { useRef } from "react";
 import { useReveal } from "../motion/useReveal";
 import { documents, type DocumentKey } from "../../data/project";
+import { useBrand } from "../../hooks/useBrand";
 import { useOverlays } from "../ui/Overlays";
 
-const CARDS: { key: DocumentKey; eyebrow: string; blurb: string }[] = [
-  { key: "brochure", eyebrow: "The project", blurb: "Location, amenities and the RADIANCE lifestyle — the complete project brochure." },
-  { key: "profile", eyebrow: "The developer", blurb: "Two decades of Adinarayan Buildcon: founders, credentials and completed projects." },
-];
+const CARD_COPY: Record<DocumentKey, { eyebrow: string; blurb: string }> = {
+  brochure: { eyebrow: "The project", blurb: "Location, amenities and the RADIANCE lifestyle — the complete project brochure." },
+  profile: { eyebrow: "The developer", blurb: "Two decades of Adinarayan Buildcon: founders, credentials and completed projects." },
+};
 
-export function Brochures() {
+/** Shows the download card(s) for the current page: company profile on home, brochure on RADIANCE. */
+export function Brochures({ docs }: { docs: DocumentKey[] }) {
   const ref = useRef<HTMLElement>(null);
   const { openDocument } = useOverlays();
+  const brand = useBrand();
   useReveal(ref);
 
   return (
     <section ref={ref} className="bg-sand py-24 md:py-32" aria-labelledby="downloads-title">
       <div className="container-x">
-        <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <p className="eyebrow" data-reveal="fade">
-              Downloads
-            </p>
-            <h2 id="downloads-title" className="display mt-4 text-[clamp(2.2rem,4vw,3.6rem)] text-navy" data-reveal="up">
-              Take RADIANCE <em className="text-gold-deep">home.</em>
-            </h2>
-          </div>
+        <div className="mb-12">
+          <p className="eyebrow" data-reveal="fade">
+            Downloads
+          </p>
+          <h2 id="downloads-title" className="display mt-4 text-[clamp(2.2rem,4vw,3.6rem)] text-navy" data-reveal="up">
+            {brand.key === "radiance" ? (
+              <>
+                Take RADIANCE <em className="text-gold-deep">home.</em>
+              </>
+            ) : (
+              <>
+                Know Adinarayan <em className="text-gold-deep">better.</em>
+              </>
+            )}
+          </h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {CARDS.map(({ key, eyebrow, blurb }, i) => {
+        <div className={`grid gap-6 ${docs.length > 1 ? "md:grid-cols-2" : "max-w-3xl"}`}>
+          {docs.map((key, i) => {
             const doc = documents[key];
+            const { eyebrow, blurb } = CARD_COPY[key];
             return (
               <button
                 key={key}

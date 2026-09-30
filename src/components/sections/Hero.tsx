@@ -7,7 +7,12 @@ import { useOverlays } from "../ui/Overlays";
 import { useScrollTo } from "../../hooks/useLenis";
 import { useIsMobile, useReducedMotion } from "../../hooks/useMediaQuery";
 
-export function Hero() {
+type Props = {
+  /** "adinarayan" = company home page; "radiance" = the project landing page. */
+  variant?: "adinarayan" | "radiance";
+};
+
+export function Hero({ variant = "radiance" }: Props) {
   const root = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { openFilm } = useOverlays();
@@ -58,10 +63,12 @@ export function Hero() {
     return () => io.disconnect();
   }, [mobile]);
 
-  const letters = project.name.split("");
+  const company = variant === "adinarayan";
+  const word = company ? "ADINARAYAN" : project.name;
+  const letters = word.split("");
 
   return (
-    <section ref={root} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-navy text-ivory" aria-label={`${project.name} introduction`}>
+    <section ref={root} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-navy text-ivory" aria-label={`${company ? developer.name : project.name} introduction`}>
       <div className="hero-media absolute inset-0 will-change-transform">
         {reduced ? (
           <img src={videos.hero.poster} alt="" className="h-full w-full object-cover" />
@@ -94,24 +101,43 @@ export function Hero() {
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
 
       <div className="hero-content relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        {/* Developer first: the logo (on an ivory chip so it reads over the film), then its name. */}
-        <div className="hero-eyebrow flex flex-col items-center gap-4">
-          <img src="/media/logos/adinarayan.webp" alt={developer.name} width="640" height="800" className="h-16 w-auto rounded-[2px] bg-ivory p-1.5 md:h-20" />
-          <p className="eyebrow !text-gold-light [text-shadow:0_1px_14px_rgba(14,22,40,0.95),0_0_3px_rgba(14,22,40,0.6)]">{developer.name} presents</p>
-        </div>
+        {company ? (
+          <p className="hero-eyebrow eyebrow !text-gold-light [text-shadow:0_1px_14px_rgba(14,22,40,0.95),0_0_3px_rgba(14,22,40,0.6)]">
+            Buildcon LLP · Since {developer.since}
+          </p>
+        ) : (
+          /* RADIANCE page: the developer first (logo on an ivory chip so it reads over the film), then the project. */
+          <div className="hero-eyebrow flex flex-col items-center gap-4">
+            <img src="/media/logos/adinarayan.webp" alt={developer.name} width="640" height="800" className="h-16 w-auto rounded-[2px] bg-ivory p-1.5 md:h-20" />
+            <p className="eyebrow !text-gold-light [text-shadow:0_1px_14px_rgba(14,22,40,0.95),0_0_3px_rgba(14,22,40,0.6)]">{developer.name} presents</p>
+          </div>
+        )}
         <div className="hero-rule gold-rule mt-6 w-40 origin-center" />
-        <h1 aria-label={project.name} className="hero-word wordmark mt-8 flex overflow-hidden text-[clamp(3rem,11vw,10rem)] leading-none !tracking-[0.18em] text-ivory md:!tracking-[0.24em]">
+        <h1
+          aria-label={company ? developer.name : project.name}
+          className={`hero-word wordmark mt-8 flex overflow-hidden leading-none text-ivory ${
+            company
+              ? "text-[clamp(2rem,10.8vw,4.6rem)] !tracking-[0.1em] md:text-[clamp(3rem,7.4vw,8.4rem)] md:!tracking-[0.2em]"
+              : "text-[clamp(3rem,11vw,10rem)] !tracking-[0.18em] md:!tracking-[0.24em]"
+          }`}
+        >
           {letters.map((l, i) => (
             <span key={i} className="inline-block" aria-hidden="true">
               {l}
             </span>
           ))}
         </h1>
-        <p className="hero-sub display mt-6 text-[clamp(1.35rem,2.6vw,2.1rem)] text-ivory/90 italic">{project.tagline}</p>
+        <p className="hero-sub display mt-6 text-[clamp(1.35rem,2.6vw,2.1rem)] text-ivory/90 italic">{company ? developer.motto : project.tagline}</p>
         <div className="hero-cta mt-11 flex flex-col items-center gap-4 sm:flex-row">
-          <Link to="/experience" className="btn btn-gold">
-            Explore the Experience
-          </Link>
+          {company ? (
+            <Link to="/radiance" className="btn btn-gold">
+              Explore RADIANCE
+            </Link>
+          ) : (
+            <Link to="/experience" className="btn btn-gold">
+              Explore the Experience
+            </Link>
+          )}
           <button type="button" className="btn btn-ghost-light" onClick={() => scrollTo("#enquire")}>
             Enquire now
           </button>
@@ -119,11 +145,21 @@ export function Hero() {
       </div>
 
       <div className="hero-foot absolute inset-x-0 bottom-0 z-10">
-        <div className="container-x flex items-end justify-between gap-6 pb-8 text-[0.68rem] font-medium tracking-[0.2em] text-ivory/70 uppercase">
+        <div className="container-x flex items-end justify-between gap-3 pb-8 md:gap-6 text-[0.68rem] font-medium tracking-[0.2em] text-ivory/70 uppercase">
           <p className="hidden sm:block">
-            {project.positioning}
-            <br />
-            {project.location}
+            {company ? (
+              <>
+                Crafting dreams since {developer.since}
+                <br />
+                Kalyan Dombivli
+              </>
+            ) : (
+              <>
+                {project.positioning}
+                <br />
+                {project.location}
+              </>
+            )}
           </p>
           <button type="button" onClick={openFilm} className="group flex items-center gap-4 text-ivory">
             <span className="flex h-14 w-14 items-center justify-center rounded-full border border-ivory/40 transition-all duration-700 group-hover:border-gold-light group-hover:bg-gold/20">
@@ -131,13 +167,21 @@ export function Hero() {
                 <path d="M0 0l14 8-14 8z" />
               </svg>
             </span>
-            <span className="tracking-[0.28em]">Watch the film</span>
+            <span className="whitespace-nowrap tracking-[0.2em] md:tracking-[0.28em]">Watch the film</span>
           </button>
-          <p className="text-right">
-            MahaRERA No.
-            <br />
-            <span className="text-ivory">{project.rera}</span>
-          </p>
+          {company ? (
+            <Link to="/radiance" className="text-right whitespace-nowrap hover:text-ivory">
+              Now launching
+              <br />
+              <span className="text-ivory">RADIANCE →</span>
+            </Link>
+          ) : (
+            <p className="text-right">
+              MahaRERA No.
+              <br />
+              <span className="text-ivory">{project.rera}</span>
+            </p>
+          )}
         </div>
       </div>
     </section>

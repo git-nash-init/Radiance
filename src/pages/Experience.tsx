@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, m as motion } from "framer-motion";
 import { project, tourFeatures } from "../data/project";
 import { tourPreview } from "../data/media";
@@ -23,6 +23,7 @@ export default function Experience() {
   const portrait = useMediaQuery("(max-width: 767px) and (orientation: portrait)");
   const shell = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
+  const navigate = useNavigate();
 
   useDocumentMeta({
     title: "Virtual Tour — Step inside RADIANCE, Dombivli East",
@@ -45,6 +46,13 @@ export default function Experience() {
     document.addEventListener("fullscreenchange", onChange);
     return () => document.removeEventListener("fullscreenchange", onChange);
   }, []);
+
+  // Back to wherever the visitor came from (home or RADIANCE); a direct visit falls back to the RADIANCE page.
+  const goBack = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window.history.state?.idx === "number" && window.history.state.idx > 0) navigate(-1);
+    else navigate("/radiance");
+  };
 
   const toggleFullscreen = () => {
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
@@ -133,14 +141,15 @@ export default function Experience() {
           something; the iframe starts below this bar instead. */}
       <div className="absolute inset-x-0 top-0 z-10 flex h-11 items-center justify-between gap-2 border-b border-ivory/10 bg-navy px-2 md:px-5">
         <Link
-          to="/"
-          aria-label="Back to RADIANCE"
+          to="/radiance"
+          onClick={goBack}
+          aria-label="Back"
           className="flex h-9 min-w-9 items-center justify-center gap-3 px-2 text-[0.7rem] font-semibold tracking-[0.22em] uppercase transition-colors hover:text-gold-light"
         >
           <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
             <path d="M18 5H2M6 1L2 5l4 4" />
           </svg>
-          <span className="hidden sm:inline">Back to RADIANCE</span>
+          <span className="hidden sm:inline">Back</span>
         </Link>
         <img src="/media/logos/radiance-light.webp" alt="" className="pointer-events-none absolute left-1/2 h-8 w-auto -translate-x-1/2" />
         <div className="flex items-center gap-2 md:gap-3">
