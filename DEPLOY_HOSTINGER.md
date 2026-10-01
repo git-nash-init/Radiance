@@ -26,8 +26,9 @@ For later updates that don't touch media or the tour, re-upload only `index.html
 
 ## 3. Domain & SSL
 - Point the domain at Hostinger. The call transcript mentions a transfer from Google Domains/Squarespace that was stuck, and using Hostinger's free domain as a fallback.
+- Set up a redirect from `www.adinarayanbuildconllp.com` to `adinarayanbuildconllp.com` (the site's canonical address).
 - Enable the free SSL in hPanel. `.htaccess` already forces HTTPS.
-- If the final domain isn't `www.adinarayanbuildconllp.com`, update `VITE_SITE_URL` in `.env`, the canonical/OG URLs in `index.html`, `public/robots.txt` and `public/sitemap.xml`, then rebuild.
+- If the final domain isn't `adinarayanbuildconllp.com`, update `VITE_SITE_URL` in `.env`, the canonical/OG URLs in `index.html`, `public/robots.txt` and `public/sitemap.xml`, then rebuild.
 
 ## 4. What `.htaccess` does
 - Routes `/experience`, `/privacy` and `/terms` to the React app, while real files (tour, media, PDFs) are served directly.

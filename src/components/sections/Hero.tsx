@@ -27,10 +27,14 @@ export function Hero({ variant = "radiance" }: Props) {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.2 });
       // Media stays visible from the first frame (it is the LCP element); only the camera eases in.
-      tl.fromTo(".hero-media", { scale: 1.14 }, { scale: 1.04, duration: 2.8, ease: "expo.out" })
-        .fromTo(".hero-rule", { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut" }, 0.5)
-        .fromTo(".hero-eyebrow", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.2 }, 0.8)
-        .fromTo(".hero-word span", { yPercent: 115 }, { yPercent: 0, duration: 1.6, stagger: 0.06, ease: "expo.out" }, 0.9)
+      tl.fromTo(".hero-media", { scale: 1.14 }, { scale: 1.04, duration: 2.8, ease: "expo.out" }).fromTo(
+        ".hero-rule",
+        { scaleX: 0 },
+        { scaleX: 1, duration: 1.4, ease: "expo.inOut" },
+        0.5,
+      );
+      if (el.querySelector(".hero-eyebrow")) tl.fromTo(".hero-eyebrow", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.2 }, 0.8);
+      tl.fromTo(".hero-word span", { yPercent: 115 }, { yPercent: 0, duration: 1.6, stagger: 0.06, ease: "expo.out" }, 0.9)
         .fromTo(".hero-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1.2 }, 1.5)
         .fromTo(".hero-cta > *", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1.1, stagger: 0.1 }, 1.7)
         .fromTo(".hero-foot > *", { opacity: 0 }, { opacity: 1, duration: 1.2, stagger: 0.1 }, 2);
@@ -101,25 +105,22 @@ export function Hero({ variant = "radiance" }: Props) {
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
 
       <div className="hero-content relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        {company ? (
-          /* "BUILDCON LLP" on top, in a bigger face than a plain eyebrow; ADINARAYAN follows below. */
-          <p className="hero-eyebrow wordmark text-[clamp(1.25rem,4.8vw,2.5rem)] !font-medium !tracking-[0.32em] text-gold-light [text-shadow:0_0_26px_rgba(14,22,40,0.95),0_2px_8px_rgba(14,22,40,0.85),0_0_2px_rgba(14,22,40,0.9)] md:!tracking-[0.4em]">
-            Buildcon LLP
-          </p>
-        ) : (
-          /* RADIANCE page: the developer first (logo on an ivory chip so it reads over the film), then the project. */
-          <div className="hero-eyebrow flex flex-col items-center gap-4">
-            <img src="/media/logos/adinarayan.webp" alt={developer.name} width="640" height="800" className="h-16 w-auto rounded-[2px] bg-ivory p-1.5 md:h-20" />
-            <p className="eyebrow !text-gold-light [text-shadow:0_1px_14px_rgba(14,22,40,0.95),0_0_3px_rgba(14,22,40,0.6)]">{developer.name} presents</p>
-          </div>
+        {/* RADIANCE page: the developer's name first, ADINARAYAN over a bold "Buildcon LLP", then the project. */}
+        {!company && (
+          <>
+            <div className="hero-eyebrow flex flex-col items-center">
+              <p className="wordmark text-[clamp(1.5rem,5.2vw,3rem)] leading-none !tracking-[0.22em] text-ivory [text-shadow:0_0_26px_rgba(14,22,40,0.95),0_2px_8px_rgba(14,22,40,0.85),0_0_2px_rgba(14,22,40,0.9)] md:!tracking-[0.3em]">Adinarayan</p>
+              <p className="display mt-3 text-[clamp(1.15rem,3.8vw,1.9rem)] leading-none !font-semibold tracking-[0.12em] text-gold-light [text-shadow:0_0_26px_rgba(14,22,40,0.95),0_2px_8px_rgba(14,22,40,0.85),0_0_2px_rgba(14,22,40,0.9)]">Buildcon LLP</p>
+            </div>
+            <div className="hero-rule gold-rule mt-7 w-40 origin-center" />
+          </>
         )}
-        <div className="hero-rule gold-rule mt-6 w-40 origin-center" />
         <h1
           aria-label={company ? developer.name : project.name}
-          className={`hero-word wordmark mt-8 flex overflow-hidden leading-none text-ivory ${
+          className={`hero-word wordmark flex overflow-hidden leading-none text-ivory ${
             company
               ? "text-[clamp(2rem,10.8vw,4.6rem)] !tracking-[0.1em] md:text-[clamp(3rem,7.4vw,8.4rem)] md:!tracking-[0.2em]"
-              : "text-[clamp(3rem,11vw,10rem)] !tracking-[0.18em] md:!tracking-[0.24em]"
+              : "mt-8 text-[clamp(3rem,11vw,10rem)] !tracking-[0.18em] md:!tracking-[0.24em]"
           }`}
         >
           {letters.map((l, i) => (
@@ -128,6 +129,15 @@ export function Hero({ variant = "radiance" }: Props) {
             </span>
           ))}
         </h1>
+        {/* Company page: "Buildcon LLP", in bold, directly under ADINARAYAN. */}
+        {company && (
+          <>
+            <p className="hero-sub display mt-4 text-[clamp(1.45rem,6.6vw,2.4rem)] leading-none !font-semibold tracking-[0.12em] text-gold-light [text-shadow:0_0_26px_rgba(14,22,40,0.95),0_2px_8px_rgba(14,22,40,0.85),0_0_2px_rgba(14,22,40,0.9)] md:mt-6 md:text-[clamp(1.8rem,3.3vw,3.4rem)] md:tracking-[0.18em]">
+              Buildcon LLP
+            </p>
+            <div className="hero-rule gold-rule mt-8 w-40 origin-center" />
+          </>
+        )}
         <p className="hero-sub display mt-6 text-[clamp(1.35rem,2.6vw,2.1rem)] text-ivory/90 italic">{company ? developer.motto : project.tagline}</p>
         <div className="hero-cta mt-11 flex flex-col items-center gap-4 sm:flex-row">
           {company ? (

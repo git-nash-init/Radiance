@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const SITE = ((import.meta.env.VITE_SITE_URL as string | undefined) ?? "https://www.adinarayanbuildconllp.com").replace(/\/$/, "");
+const SITE = ((import.meta.env.VITE_SITE_URL as string | undefined) ?? "https://adinarayanbuildconllp.com").replace(/\/$/, "");
 
 function setMeta(selector: string, attr: string, value: string) {
   const el = document.head.querySelector<HTMLMetaElement | HTMLLinkElement>(selector);

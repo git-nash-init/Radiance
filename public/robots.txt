@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /virtual-tour/
 
-Sitemap: https://www.adinarayanbuildconllp.com/sitemap.xml
+Sitemap: https://adinarayanbuildconllp.com/sitemap.xml

@@ -7,7 +7,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import path from "node:path";
 
 const DIST = path.resolve(import.meta.dirname, "..", "dist");
-const SITE = (process.env.VITE_SITE_URL ?? "https://www.adinarayanbuildconllp.com").replace(/\/$/, "");
+const SITE = (process.env.VITE_SITE_URL ?? "https://adinarayanbuildconllp.com").replace(/\/$/, "");
 
 const ROUTES = {
   radiance: {
