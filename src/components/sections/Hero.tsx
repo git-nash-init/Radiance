@@ -102,8 +102,9 @@ export function Hero({ variant = "radiance" }: Props) {
 
       <div className="hero-content relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
         {company ? (
-          <p className="hero-eyebrow eyebrow !text-gold-light [text-shadow:0_1px_14px_rgba(14,22,40,0.95),0_0_3px_rgba(14,22,40,0.6)]">
-            Buildcon LLP · Since {developer.since}
+          /* "BUILDCON LLP" on top, in a bigger face than a plain eyebrow; ADINARAYAN follows below. */
+          <p className="hero-eyebrow wordmark text-[clamp(1.25rem,4.8vw,2.5rem)] !font-medium !tracking-[0.32em] text-gold-light [text-shadow:0_0_26px_rgba(14,22,40,0.95),0_2px_8px_rgba(14,22,40,0.85),0_0_2px_rgba(14,22,40,0.9)] md:!tracking-[0.4em]">
+            Buildcon LLP
           </p>
         ) : (
           /* RADIANCE page: the developer first (logo on an ivory chip so it reads over the film), then the project. */
