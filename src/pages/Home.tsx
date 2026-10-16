@@ -1,5 +1,6 @@
 import { Hero } from "../components/sections/Hero";
 import { Developer } from "../components/sections/Developer";
+import { TechnicalTeam } from "../components/sections/TechnicalTeam";
 import { ProjectsTeaser } from "../components/sections/ProjectsTeaser";
 import { Living } from "../components/sections/Living";
 import { DayNight } from "../components/sections/DayNight";
@@ -23,6 +24,7 @@ export default function Home() {
     <>
       <Hero variant="adinarayan" />
       <Developer />
+      <TechnicalTeam />
       <ProjectsTeaser />
       <Living />
       <DayNight />

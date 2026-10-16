@@ -75,6 +75,31 @@ export function Developer() {
               ))}
             </ul>
           </div>
+
+          <div className="mt-14 border-t border-navy/10 pt-10" data-reveal="up">
+            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+              <div>
+                <p className="text-[0.65rem] font-semibold tracking-[0.2em] text-muted uppercase">Corporate Office</p>
+                <p className="mt-2 text-sm text-navy">{developer.office.lines.join(", ")}</p>
+              </div>
+              <div>
+                <p className="text-[0.65rem] font-semibold tracking-[0.2em] text-muted uppercase">Sales &amp; Enquiries</p>
+                <a href={`mailto:${developer.email}`} className="link-underline mt-2 inline-block text-sm break-all text-navy hover:text-gold-deep font-medium">
+                  {developer.email}
+                </a>
+              </div>
+              <div>
+                <p className="text-[0.65rem] font-semibold tracking-[0.2em] text-muted uppercase">Direct Phone</p>
+                <a href={`tel:${developer.phone.tel}`} className="mt-2 inline-block text-sm text-navy hover:text-gold-deep">
+                  {developer.phone.display}
+                </a>
+              </div>
+              <div>
+                <p className="text-[0.65rem] font-semibold tracking-[0.2em] text-muted uppercase">GSTIN</p>
+                <p className="mt-2 font-mono text-sm text-navy">{developer.gstin}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

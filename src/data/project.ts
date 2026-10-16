@@ -50,7 +50,7 @@ export const developer = {
     lines: ["Shop No. 67–68, 2nd Floor, P P Chamber", "Near KDMC Office, Dombivli East – 421201"],
   },
   phone: { display: "+91 99701 83779", tel: "+919970183779", whatsapp: "919970183779" },
-  email: "adinarayanbuildconllp@gmail.com",
+  email: "salesadinarayanbuildconllp@gmail.com",
   gstin: "27ACEFA2398B1ZL",
 } as const;
 
@@ -122,9 +122,75 @@ export const tourFeatures = [
   { label: "Neighbourhood", detail: "Education, healthcare, shopping, garden, temple" },
 ];
 
+// Technical Team & Key Project Consultants
+export const technicalTeam = [
+  {
+    id: "architect",
+    role: "Architect",
+    title: "Architectural Planning & Design",
+    discipline: "Master Planning & Elevation",
+    badge: "Design & Approvals",
+    description:
+      "Comprehensive master planning, spatial layouts, high-aesthetic exterior facades, and statutory MahaRERA compliance for natural light, ventilation, and contemporary lifestyle flow.",
+    highlights: ["Master Planning", "Facade & Elevation", "Spatial Efficiency", "Statutory Liaisoning"],
+  },
+  {
+    id: "pmc",
+    role: "PMC",
+    title: "Project Management Consultant",
+    discipline: "Construction Supervision & Quality Control",
+    badge: "Quality & Governance",
+    description:
+      "End-to-end execution governance, comprehensive on-site inspections, stage-wise quality control, timeline tracking, and zero-compromise safety standards.",
+    highlights: ["Quality Assurance", "Milestone Tracking", "Site Safety Protocols", "Material Testing"],
+  },
+  {
+    id: "mep",
+    role: "MEP Consultant",
+    title: "Mechanical, Electrical & Plumbing",
+    discipline: "Integrated Building Services",
+    badge: "Services Engineering",
+    description:
+      "High-efficiency building services engineering including advanced electrical networks, sound-insulated plumbing lines, ventilation systems, and modern fire-fighting infrastructure.",
+    highlights: ["Power Distribution", "Advanced Plumbing", "Fire Fighting Networks", "Energy Optimization"],
+  },
+  {
+    id: "structural",
+    role: "Structural Engineer",
+    title: "RCC Structural Dynamics & Stability",
+    discipline: "Seismic & Foundation Dynamics",
+    badge: "Strength & Durability",
+    description:
+      "Earthquake-resistant RCC framed structural design strictly adhering to IS-code standards, geological soil mechanics, load distribution, and multi-generational endurance.",
+    highlights: ["Earthquake-Resistant RCC", "IS Code Compliance", "Soil & Foundation Dynamics", "Long-Term Integrity"],
+  },
+  {
+    id: "stp",
+    role: "STP Specialist",
+    title: "Sewage Treatment Plant & Environment",
+    discipline: "Sustainable Water Treatment",
+    badge: "Eco-Sustainability",
+    description:
+      "Modern eco-friendly sewage treatment and bio-filtration systems enabling treated water recycling for lush landscape irrigation and flushing to conserve natural resources.",
+    highlights: ["Recycled Water Use", "Odour-Free Operation", "Eco Compliance", "Sustainable Living"],
+  },
+  {
+    id: "parking",
+    role: "Parking & Mobility",
+    title: "Stack Parking & Traffic Circulation",
+    discipline: "Mechanical & Space Engineering",
+    badge: "Smart Mobility",
+    description:
+      "Precision-engineered stack car parking systems optimizing vehicular capacity, seamless driveway ingress/egress, automated safety sensors, and EV-ready power conduits.",
+    highlights: ["Stack Car Systems", "Smooth Circulation", "Safety Interlocks", "EV Charging Provisions"],
+  },
+] as const;
+
+export type TechnicalMember = (typeof technicalTeam)[number];
+
 export const documents = {
   brochure: { title: "RADIANCE Brochure", file: "/documents/Radiance-Brochure.pdf", size: "5.7 MB", cover: "/media/company/brochure-cover.webp" },
-  profile: { title: "Company Profile", file: "/documents/Adinarayan-Buildcon-Profile.pdf", size: "14.7 MB", cover: "/media/company/founders-page.webp" },
+  profile: { title: "Company Profile", file: "/documents/Adinarayan-Buildcon-Profile.pdf", size: "35.4 MB", cover: "/media/company/founders-page.webp" },
 } as const;
 
 export type DocumentKey = keyof typeof documents;

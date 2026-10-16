@@ -44,6 +44,7 @@ export const brands: Record<BrandKey, Brand> = {
     footerBlurb: `${developer.motto}. Building across Kalyan Dombivli since ${developer.since}.`,
     nav: [
       { label: "About", href: "#developer" },
+      { label: "Technical Team", href: "#technical-team" },
       { label: "RADIANCE", to: "/radiance" },
       { label: "Projects", to: "/projects" },
       { label: "Experience", href: "#experience" },
@@ -68,6 +69,7 @@ export const brands: Record<BrandKey, Brand> = {
       { label: "Amenities", href: "#amenities" },
       { label: "Gallery", href: "#gallery" },
       { label: "Location", href: "#location" },
+      { label: "Technical Team", href: "#technical-team" },
       { label: "Adinarayan", to: "/" },
     ],
   },

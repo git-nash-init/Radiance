@@ -15,7 +15,8 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "..", "Brochures_Profiles")
-PROFILE = os.path.join(SRC, "_Adinarayan Buildcon Profile-1 pdf.pdf")
+LOCAL_PROFILE = os.path.join(ROOT, "_Adinarayan Buildcon Profile-1 pdf.pdf")
+PROFILE = LOCAL_PROFILE if os.path.exists(LOCAL_PROFILE) else os.path.join(SRC, "_Adinarayan Buildcon Profile-1 pdf.pdf")
 BROCHURE = os.path.join(SRC, "Adinarayan Buildcon Brochure.pdf")
 IMG_OUT = os.path.join(ROOT, "public", "media", "company")
 DOC_OUT = os.path.join(ROOT, "public", "documents")

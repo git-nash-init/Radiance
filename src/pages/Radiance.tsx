@@ -7,6 +7,7 @@ import { DayNight } from "../components/sections/DayNight";
 import { Amenities } from "../components/sections/Amenities";
 import { Gallery } from "../components/sections/Gallery";
 import { Connectivity } from "../components/sections/Connectivity";
+import { TechnicalTeam } from "../components/sections/TechnicalTeam";
 import { Brochures } from "../components/sections/Brochures";
 import { Enquire } from "../components/sections/Enquire";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
@@ -33,6 +34,7 @@ export default function Radiance() {
       <Amenities />
       <Gallery />
       <Connectivity />
+      <TechnicalTeam variant="project" />
       <Brochures docs={["brochure"]} />
       <Enquire />
     </>
