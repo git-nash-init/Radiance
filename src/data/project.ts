@@ -49,7 +49,7 @@ export const developer = {
   office: {
     lines: ["Shop No. 67–68, 2nd Floor, P P Chamber", "Near KDMC Office, Dombivli East – 421201"],
   },
-  phone: { display: "+91 99701 83779", tel: "+919970183779", whatsapp: "919970183779" },
+  phone: { display: "+91 86899 27656", tel: "+918689927656", whatsapp: "918689927656" },
   email: "salesadinarayanbuildconllp@gmail.com",
   gstin: "27ACEFA2398B1ZL",
 } as const;
@@ -163,16 +163,6 @@ export const technicalTeam = [
     description:
       "Earthquake-resistant RCC framed structural design strictly adhering to IS-code standards, geological soil mechanics, load distribution, and multi-generational endurance.",
     highlights: ["Earthquake-Resistant RCC", "IS Code Compliance", "Soil & Foundation Dynamics", "Long-Term Integrity"],
-  },
-  {
-    id: "stp",
-    role: "STP Specialist",
-    title: "Sewage Treatment Plant & Environment",
-    discipline: "Sustainable Water Treatment",
-    badge: "Eco-Sustainability",
-    description:
-      "Modern eco-friendly sewage treatment and bio-filtration systems enabling treated water recycling for lush landscape irrigation and flushing to conserve natural resources.",
-    highlights: ["Recycled Water Use", "Odour-Free Operation", "Eco Compliance", "Sustainable Living"],
   },
   {
     id: "parking",

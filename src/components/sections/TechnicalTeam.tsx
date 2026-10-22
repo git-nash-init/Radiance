@@ -23,7 +23,7 @@ export function TechnicalTeam({ variant = "company" }: Props) {
             Technical Team &amp; Consultants
           </p>
           <h2 id="technical-team-title" className="sr-only">
-            Technical Team — Architect, PMC, MEP, Structural Engineer, STP and Parking Consultants
+            Technical Team — Architect, PMC, MEP, Structural Engineer and Parking Consultants
           </h2>
           <Lines
             className="display mt-6 text-[clamp(2.5rem,5vw,4.4rem)] text-navy"
@@ -40,7 +40,7 @@ export function TechnicalTeam({ variant = "company" }: Props) {
           </p>
         </div>
 
-        {/* 6 Disciplines Grid */}
+        {/* Disciplines Grid */}
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {technicalTeam.map((item, index) => (
             <article
@@ -90,12 +90,6 @@ export function TechnicalTeam({ variant = "company" }: Props) {
                         <path d="m4 3 16 18" />
                         <path d="m20 3-16 18" />
                         <path d="M4 12h16" />
-                      </svg>
-                    )}
-                    {item.id === "stp" && (
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
-                        <path d="M12 12a3 3 0 0 0-3 3" />
                       </svg>
                     )}
                     {item.id === "parking" && (

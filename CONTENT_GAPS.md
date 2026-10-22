@@ -12,8 +12,8 @@ The site uses only facts found in the supplied material. The items below are mis
 - **Interior flat renders.** None were supplied (only amenity renders), so the "Living" section uses exterior architecture.
 - **A walkthrough film without on-screen labels**, if a cleaner hero or amenity loop is wanted.
 
-- **Company address, phone and email (home page).** Updated with the client's confirmed email `salesadinarayanbuildconllp@gmail.com` for sales & enquiries. Office is Shop No. 67–68, 2nd Floor, P P Chamber, near KDMC Office, Dombivli East – 421201, and phone +91 99701 83779.
-- **Technical Team (Architect, PMC, MEP, Structural Engineer, STP, Parking).** Added to the site showcasing the 6 multidisciplinary engineering partners and consultants.
+- **Company address, phone and email (home page).** Updated with the client's confirmed email `salesadinarayanbuildconllp@gmail.com` for sales & enquiries. Office is Shop No. 67–68, 2nd Floor, P P Chamber, near KDMC Office, Dombivli East – 421201, and unified phone +91 86899 27656.
+- **Technical Team (Architect, PMC, MEP, Structural Engineer, Parking).** Multidisciplinary engineering partners and consultants (STP removed per client instructions).
 - **Updated Company Profile PDF.** Integrated the updated profile PDF (`_Adinarayan Buildcon Profile-1 pdf.pdf`) into `public/documents/Adinarayan-Buildcon-Profile.pdf` and refreshed extracted media.
 - **Sections shown on both pages.** As instructed, "Rising with quiet confidence", Day · Evening · Night and the tour teaser appear on both pages; the RADIANCE-specific material (amenities, gallery, location, unveiling, brochure) is only on `/radiance`. The Day/Night and "Rising" sections are renders of the RADIANCE building, so they will read as RADIANCE on the company page.
 - **Kids' Play Area** (added after the client's 29 Sep call). The client supplied no separate render or brochure copy, only a few seconds in the AI film. The image is a still cut from that film (`scripts/source-frames/kids-play.jpg`, logo cropped out) and the sentence is worded from what the render shows (climbing wall, colourful flooring, drawing easel). Please have the client confirm the wording and, ideally, send a proper render.
@@ -21,7 +21,7 @@ The site uses only facts found in the supplied material. The items below are mis
 - **Map pin.** It is taken from the Google Maps embed inside the client's 3DVista tour ("Milan Park Society", 19.203104, 73.08951). Please confirm this is the RADIANCE plot, or share a Google Business Profile link.
 - **"Holy Angle School".** Kept exactly as printed in the brochure. Likely "Holy Angel". Please confirm the spelling.
 - **"Elevationg Lives".** A typo in the brochure and profile; the site uses "Elevating Lives".
-- **Phone numbers.** The brochure lists 86899 27656 (used for RADIANCE enquiries and WhatsApp). The company profile lists +91 99701 83779 (not shown). Confirm which number should receive WhatsApp.
+- **Phone numbers.** Unified across the entire website to +91 86899 27656 as instructed by the client.
 - **Email.** radiance@adinarayanbuildconllp.com (from the client) is used. Confirm the mailbox is live, since the transcript mentions a pending Google Workspace payment.
 - **Domain.** The client's domain is `adinarayanbuildconllp.com` (no `www`), and canonical, Open Graph, sitemap and robots URLs use exactly that. Make `www.adinarayanbuildconllp.com` redirect to it in the hosting/DNS panel so search engines see one address. If the domain ever changes, update `VITE_SITE_URL`, `index.html`, `robots.txt` and `sitemap.xml`.
 - **Guru Saptashri photo.** The profile PDF reuses Guru Ganesh's photo on this page, so the site shows a text-only card. Please supply the correct photo.
