@@ -179,8 +179,8 @@ export const technicalTeam = [
 export type TechnicalMember = (typeof technicalTeam)[number];
 
 export const documents = {
-  brochure: { title: "RADIANCE Brochure", file: "/documents/Radiance-Brochure.pdf", size: "5.7 MB", cover: "/media/company/brochure-cover.webp" },
-  profile: { title: "Company Profile", file: "/documents/Adinarayan-Buildcon-Profile.pdf", size: "35.4 MB", cover: "/media/company/founders-page.webp" },
+  brochure: { title: "RADIANCE Brochure", file: "/documents/Radiance-Brochure.pdf", size: "5.9 MB", cover: "/media/company/brochure-cover.webp" },
+  profile: { title: "Adinarayan Buildcon Profile", file: "/documents/Adinarayan-Buildcon-Profile.pdf", size: "5.9 MB", cover: "/media/company/profile-cover.webp" },
 } as const;
 
 export type DocumentKey = keyof typeof documents;
