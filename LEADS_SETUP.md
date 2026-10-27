@@ -1,6 +1,8 @@
 # Lead capture → Google Sheet (about 10 minutes)
 
-Every enquiry, brochure download and tour enquiry lands as a row in a Google Sheet. An email alert can optionally go to the sales inbox. No CRM is needed; tele-callers work from the sheet.
+Every enquiry, brochure download and tour enquiry lands as a row in a Google Sheet. An email alert automatically goes to salesadinarayanbuildconllp@gmail.com. No CRM is needed; tele-callers work directly from the sheet.
+
+> **Client Handover Document:** A client-friendly, step-by-step handover guide with English and Hinglish instructions is available in [LEADS_CLIENT_GUIDE.md](LEADS_CLIENT_GUIDE.md).
 
 ## 1. Create the sheet
 1. Sign in with the client's Google account and create a sheet named, for example, **RADIANCE Leads**.

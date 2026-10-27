@@ -80,6 +80,56 @@ export default function Projects() {
             </div>
           </div>
         </div>
+
+        {/* On-site progress highlight */}
+        <div className="container-x mt-16 border-t border-navy/10 pt-16">
+          <div className="grid items-center gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-5" data-reveal="up">
+              <span className="inline-block border border-gold px-3 py-1 text-[0.65rem] font-semibold tracking-[0.2em] text-gold-deep uppercase">
+                Active Ground Reality
+              </span>
+              <h3 className="display mt-4 text-3xl text-navy md:text-4xl">
+                Engineering in action at the <em className="text-gold-deep">RADIANCE site.</em>
+              </h3>
+              <p className="mt-4 leading-relaxed text-muted">
+                RCC foundation and column superstructure in progress at Dombivli East, managed by our full-time on-site civil engineering team under strict IS-code safety and quality protocols.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2 text-[0.7rem] font-medium text-navy">
+                <span className="bg-sand/60 px-3 py-1">IS-Code Structural Compliance</span>
+                <span className="bg-sand/60 px-3 py-1">Stage-wise Quality Audits</span>
+                <span className="bg-sand/60 px-3 py-1">Daily On-Site Supervision</span>
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7" data-reveal="clip">
+              <div className="overflow-hidden bg-sand border border-navy/10">
+                <img
+                  src="/media/site/site-blueprint-review.webp"
+                  alt="Engineering team reviewing blueprints on site"
+                  width="1280"
+                  height="960"
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <p className="p-3 text-[0.68rem] font-semibold tracking-[0.16em] text-navy uppercase bg-ivory border-t border-navy/10">
+                  Blueprint Review On-Site
+                </p>
+              </div>
+              <div className="overflow-hidden bg-sand border border-navy/10">
+                <img
+                  src="/media/site/site-team-ground.webp"
+                  alt="Ground execution crew at RADIANCE active site"
+                  width="1280"
+                  height="960"
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <p className="p-3 text-[0.68rem] font-semibold tracking-[0.16em] text-navy uppercase bg-ivory border-t border-navy/10">
+                  Civil Crew at Column Superstructure
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Landbank */}

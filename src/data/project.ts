@@ -17,7 +17,7 @@ export const project = {
   rera: "PR1330002600193",
   reraUrl: "https://maharera.maharashtra.gov.in/",
   phone: { display: "+91 86899 27656", tel: "+918689927656", whatsapp: "918689927656" },
-  email: "radiance@adinarayanbuildconllp.com",
+  email: "salesadinarayanbuildconllp@gmail.com",
 } as const;
 
 export const developer = {
@@ -184,3 +184,23 @@ export const documents = {
 } as const;
 
 export type DocumentKey = keyof typeof documents;
+
+export const siteExecutionPhotos = [
+  {
+    id: "site-blueprint-review",
+    title: "On-Site Architectural & Structural Review",
+    subtitle: "Ground Engineering & Supervision",
+    description: "Senior engineering supervisors and project consultants scrutinising structural execution blueprints directly on site prior to stage-wise casting.",
+    src: "/media/site/site-blueprint-review.webp",
+    alt: "Adinarayan Buildcon engineering supervisors and site team reviewing blueprints on site",
+  },
+  {
+    id: "site-team-ground",
+    title: "Ground Execution & Civil Engineering Crew",
+    subtitle: "Active Construction Site — RADIANCE",
+    description: "The full on-site civil team, structural engineers and safety supervisors at the active RADIANCE RCC foundation and column superstructure.",
+    src: "/media/site/site-team-ground.webp",
+    alt: "Full on-site engineering team and construction workforce at Adinarayan RADIANCE site",
+  },
+] as const;
+

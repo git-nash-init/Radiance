@@ -8,7 +8,7 @@
  */
 
 const SHEET_NAME = "Leads";
-const NOTIFY_EMAIL = "radiance@adinarayanbuildconllp.com"; // set to "" to disable alerts
+const NOTIFY_EMAIL = "salesadinarayanbuildconllp@gmail.com"; // set to "" to disable alerts
 const HEADERS = ["Received (IST)", "Name", "Phone", "Email", "Interested in", "Message", "Source", "Consent", "Page", "User agent"];
 
 function doPost(e) {

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useReveal } from "../motion/useReveal";
 import { Lines } from "../motion/Lines";
-import { technicalTeam } from "../../data/project";
+import { technicalTeam, siteExecutionPhotos } from "../../data/project";
 
 type Props = {
   /** Optional variant: 'company' (default on home) or 'project' (on /radiance). */
@@ -126,6 +126,51 @@ export function TechnicalTeam({ variant = "company" }: Props) {
               </div>
             </article>
           ))}
+        </div>
+
+        {/* On-Site Engineering & Ground Reality */}
+        <div className="mt-20 border-t border-navy/10 pt-16" data-reveal="up">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow">Ground Reality &amp; Execution</p>
+              <h3 className="display mt-3 text-3xl text-navy md:text-4xl">
+                Precision engineering, <em className="text-gold-deep">active on site.</em>
+              </h3>
+            </div>
+            <p className="max-w-md text-sm leading-relaxed text-muted">
+              Behind every calculation and IS-code specification is our dedicated site engineering crew — carrying out daily inspections, blueprint verifications, and stage-wise structural oversight.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            {siteExecutionPhotos.map((photo, i) => (
+              <figure
+                key={photo.id}
+                className="group relative overflow-hidden border border-navy/10 bg-ivory transition-all duration-700 hover:border-gold hover:shadow-[0_20px_40px_-15px_rgba(14,22,40,0.18)]"
+                data-reveal="up"
+                data-delay={i * 0.1}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-sand">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    width="1280"
+                    height="960"
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[var(--ease-cine)] group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent opacity-90" />
+                  <span className="absolute top-4 left-4 bg-navy/90 px-3 py-1 text-[0.62rem] font-semibold tracking-[0.2em] text-gold-light uppercase backdrop-blur-xs">
+                    {photo.subtitle}
+                  </span>
+                  <div className="absolute right-6 bottom-6 left-6 text-ivory">
+                    <p className="display text-2xl md:text-3xl">{photo.title}</p>
+                    <p className="mt-2 text-xs leading-relaxed text-ivory/80">{photo.description}</p>
+                  </div>
+                </div>
+              </figure>
+            ))}
+          </div>
         </div>
 
         {/* Bottom Trust Assurance Bar */}
