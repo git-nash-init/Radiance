@@ -114,6 +114,18 @@ export function Nav() {
 
           <div className="flex items-center gap-3">
             <a
+              href={`https://wa.me/${brand.phone.whatsapp}?text=${encodeURIComponent(brand.whatsappText)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Chat directly on WhatsApp at ${brand.phone.display}`}
+              className="btn hidden !min-h-11 !px-4 sm:inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-xs transition-colors"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.1-1.3c0-.1-.2-.2-.5-.3z" />
+              </svg>
+              <span>WhatsApp</span>
+            </a>
+            <a
               href="#enquire"
               onClick={(e) => {
                 e.preventDefault();
@@ -155,11 +167,24 @@ export function Nav() {
                 </motion.li>
               ))}
             </ul>
-            <div className="mt-auto space-y-2 text-sm text-ivory/60">
-              <a href={`tel:${brand.phone.tel}`} className="block text-lg text-ivory">
-                {brand.phone.display}
+            <div className="mt-auto space-y-3 pt-6 text-sm text-ivory/60">
+              <a
+                href={`https://wa.me/${brand.phone.whatsapp}?text=${encodeURIComponent(brand.whatsappText)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded bg-[#25D366] py-3.5 text-sm font-semibold tracking-wider text-white uppercase hover:bg-[#20ba5a]"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.1-1.3c0-.1-.2-.2-.5-.3z" />
+                </svg>
+                Chat on WhatsApp (+91 86899 27656)
               </a>
-              {brand.key === "radiance" ? <p>MahaRERA No. {project.rera}</p> : <p>{brand.email}</p>}
+              <div className="flex items-center justify-between text-xs text-ivory/70 pt-1">
+                <a href={`tel:${brand.phone.tel}`} className="text-ivory hover:text-gold-light">
+                  Direct: {brand.phone.display}
+                </a>
+                {brand.key === "radiance" ? <span>MahaRERA: {project.rera}</span> : <span>{brand.email}</span>}
+              </div>
             </div>
           </motion.div>
         )}

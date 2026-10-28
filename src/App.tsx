@@ -4,6 +4,7 @@ import { LazyMotion, domAnimation } from "framer-motion";
 import { Nav } from "./components/navigation/Nav";
 import { Footer } from "./components/navigation/Footer";
 import { MobileBar } from "./components/navigation/MobileBar";
+import { FloatingWhatsApp } from "./components/navigation/FloatingWhatsApp";
 import { OverlayProvider } from "./components/ui/Overlays";
 import { LenisProvider, useLenis } from "./hooks/useLenis";
 import { ScrollTrigger } from "./lib/gsap";
@@ -36,6 +37,7 @@ function SiteLayout() {
       </main>
       <Footer />
       <MobileBar />
+      <FloatingWhatsApp />
     </>
   );
 }
