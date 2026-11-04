@@ -33,6 +33,7 @@ export function LeadForm({
   const [values, setValues] = useState<Lead>({ name: "", phone: "", email: "", interest: "", message: "", source, consent: false, website: "" });
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [submitError, setSubmitError] = useState<string>("");
 
   const set = <K extends keyof Lead>(k: K, v: Lead[K]) => {
     setValues((s) => ({ ...s, [k]: v }));
@@ -53,9 +54,15 @@ export function LeadForm({
       await submitLead(values);
       setStatus("done");
       onSuccess?.();
-    } catch (err) {
-      console.error(err);
+    } catch (err: unknown) {
+      console.error("[LeadForm error]", err);
       setStatus("error");
+      const msg = err instanceof Error ? err.message : "";
+      setSubmitError(
+        msg.includes("403") || msg.includes("Permission") || msg.includes("Anyone")
+          ? "Our spreadsheet is currently synchronizing permissions. Please chat with us on WhatsApp or call directly."
+          : "We could not send your enquiry right now. Please try again or chat with our team on WhatsApp."
+      );
     }
   }
 
@@ -197,16 +204,49 @@ export function LeadForm({
         <button type="submit" className="btn btn-gold min-w-52 disabled:opacity-60" disabled={status === "sending"}>
           {status === "sending" ? "Sending…" : submitLabel}
         </button>
-        {status === "error" && (
-          <p role="alert" className={errCls.replace("mt-2", "")}>
-            Something went wrong. Please try again, or call{" "}
-            <a className="underline" href={`tel:${project.phone.tel}`}>
-              {project.phone.display}
-            </a>
-            .
-          </p>
-        )}
       </div>
+
+      {status === "error" && (
+        <div
+          role="alert"
+          className={`rounded-sm border p-4 text-sm leading-relaxed ${
+            dark ? "border-amber-500/40 bg-amber-950/20 text-ivory" : "border-amber-200 bg-amber-50 text-[#7a4805]"
+          }`}
+        >
+          <p className="font-semibold">{submitError || "Something went wrong sending your enquiry."}</p>
+          <p className="mt-1 text-xs opacity-90">
+            Don't worry, your details are not lost. You can connect with our team directly:
+          </p>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <button
+              type="submit"
+              className="inline-flex items-center gap-1 rounded bg-[#b8893b] px-3 py-1.5 text-xs font-semibold text-navy transition hover:bg-[#c99a4c]"
+            >
+              Retry
+            </button>
+            <a
+              href={`https://wa.me/918689927656?text=${encodeURIComponent(
+                `Hello Adinarayan team, I am enquiring about RADIANCE:\nName: ${values.name}\nPhone: ${values.phone}${
+                  values.email ? `\nEmail: ${values.email}` : ""
+                }${values.interest ? `\nInterest: ${values.interest}` : ""}${
+                  values.message ? `\nNote: ${values.message}` : ""
+                }`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded border border-[#25D366]/40 bg-[#25D366]/10 px-3 py-1.5 text-xs font-semibold text-[#128C7E] transition hover:bg-[#25D366]/20"
+            >
+              Chat on WhatsApp
+            </a>
+            <a
+              href={`tel:${project.phone.tel}`}
+              className="inline-flex items-center gap-1 text-xs underline underline-offset-2 opacity-80 hover:opacity-100"
+            >
+              Call {project.phone.display}
+            </a>
+          </div>
+        </div>
+      )}
     </form>
   );
 }

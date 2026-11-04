@@ -152,6 +152,18 @@ function json(obj) {
    ```
 7. This endpoint is already connected directly into the website code (`src/lib/leads.ts` and `.env`). All website leads will automatically stream into this spreadsheet in real time!
 
+> [!CAUTION]
+> ### ⚠️ Critical: If you see "You need access" or HTTP 403 Forbidden Error
+> If the form shows an error or the URL shows *"You need access"*, it means **"Who has access"** was left as *"Only myself"*. Follow this 30-second fix:
+> 1. In your Google Sheet, click **Extensions** ▸ **Apps Script**.
+> 2. In the top right, click **Deploy** ▸ **Manage deployments**.
+> 3. Click the **Pencil (✏️) icon** on your active deployment.
+> 4. In the **Version** dropdown, select **New version**.
+> 5. In the **Who has access** dropdown, change from *"Only myself"* to **Anyone**.
+> 6. Click **Deploy** and **Done**.
+> 
+> *Note:* If you are using a corporate Google Workspace account that does not allow "Anyone", use a personal Google account (`salesadinarayanbuildconllp@gmail.com`) to create the sheet and deploy the script.
+
 ---
 
 ## 📋 What Columns Appear in the Sheet?

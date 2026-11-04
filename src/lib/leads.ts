@@ -33,6 +33,16 @@ export function validateLead(lead: Lead) {
   return errors;
 }
 
+function saveBackupLead(payload: Record<string, unknown>) {
+  try {
+    const existing = JSON.parse(localStorage.getItem("radiance_unsent_leads") || "[]");
+    existing.push(payload);
+    localStorage.setItem("radiance_unsent_leads", JSON.stringify(existing.slice(-20)));
+  } catch {
+    // Ignore storage issues
+  }
+}
+
 export async function submitLead(lead: Lead): Promise<void> {
   if (lead.website) return; // bot — pretend success
   const payload = {
@@ -46,27 +56,40 @@ export async function submitLead(lead: Lead): Promise<void> {
   };
 
   // 1. Try Vercel same-origin API proxy first (eliminates browser CORS completely)
+  let proxyStatus = 0;
   try {
     const apiRes = await fetch("/api/leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    if (apiRes.ok) {
-      const data = (await apiRes.json().catch(() => ({ ok: true }))) as { ok?: boolean };
-      if (data && data.ok !== false) return;
+    proxyStatus = apiRes.status;
+
+    if (proxyStatus !== 404) {
+      const data = (await apiRes.json().catch(() => null)) as { ok?: boolean; error?: string; code?: string } | null;
+      if (apiRes.ok && data?.ok) {
+        return; // Truly saved in Google Sheets!
+      }
+      // If server responded with an error (e.g. 403 Permission Denied or 502)
+      saveBackupLead(payload);
+      throw new Error(
+        data?.error || `Server failed to store lead (status ${proxyStatus}). Please contact sales via WhatsApp.`
+      );
     }
-  } catch {
-    // If running in an environment without /api/leads, fall through to direct submission
+  } catch (err: any) {
+    // If proxy failed with a real submission error (not route 404), rethrow to surface error state!
+    if (proxyStatus !== 404 && err?.message && !err.message.includes("404")) {
+      saveBackupLead(payload);
+      throw err;
+    }
   }
 
+  // 2. Direct fetch fallback (used if running locally or in static preview where /api/leads is 404)
   if (!ENDPOINT) {
-    console.info("[leads] LEADS_ENDPOINT not set — lead not sent:", payload);
-    await new Promise((r) => setTimeout(r, 600));
-    return;
+    saveBackupLead(payload);
+    throw new Error("LEADS_ENDPOINT is not configured.");
   }
 
-  // 2. Direct fetch with standard CORS
   try {
     const res = await fetch(ENDPOINT, {
       method: "POST",
@@ -75,20 +98,16 @@ export async function submitLead(lead: Lead): Promise<void> {
       redirect: "follow",
     });
     if (res.ok) {
-      const data = (await res.json().catch(() => ({ ok: true }))) as { ok?: boolean };
+      const data = (await res.json().catch(() => ({ ok: true }))) as { ok?: boolean; error?: string };
       if (data && data.ok !== false) return;
+      throw new Error(data?.error || `Direct submission returned error`);
     }
-  } catch (err) {
-    console.warn("[leads] Standard fetch encountered CORS/network block, trying no-cors fallback:", err);
+    throw new Error(`Endpoint returned status ${res.status}`);
+  } catch (err: any) {
+    console.error("[leads] Direct submission failed:", err);
+    saveBackupLead(payload);
+    throw new Error(
+      "Unable to send enquiry to Google Sheets right now. Deployment permissions may require access set to 'Anyone'."
+    );
   }
-
-  // 3. Resilient fallback: mode: "no-cors"
-  // When Google Apps Script redirects across domains or has CORS headers missing,
-  // "no-cors" dispatches the simple POST request directly so Google Sheets records it.
-  await fetch(ENDPOINT, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload),
-  });
 }
