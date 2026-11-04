@@ -21,8 +21,8 @@ export function fallbackSrc(id: ImageId, target = 1280) {
 }
 
 // Video hosting: files live in /public/videos by default. To move them to a CDN,
-// set VITE_MEDIA_BASE (e.g. https://cdn.example.com/radiance) — see VIDEO_HOSTING.md.
-const MEDIA_BASE = (import.meta.env.VITE_MEDIA_BASE as string | undefined)?.replace(/\/$/, "") ?? "";
+// set MEDIA_BASE (e.g. https://cdn.example.com/radiance) — see VIDEO_HOSTING.md.
+const MEDIA_BASE = (import.meta.env.MEDIA_BASE as string | undefined)?.replace(/\/$/, "") ?? "";
 const v = (p: string) => `${MEDIA_BASE}/videos/${p}`;
 
 export const videos = {

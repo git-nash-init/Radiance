@@ -28,7 +28,7 @@ For later updates that don't touch media or the tour, re-upload only `index.html
 - Point the domain at Hostinger. The call transcript mentions a transfer from Google Domains/Squarespace that was stuck, and using Hostinger's free domain as a fallback.
 - Set up a redirect from `www.adinarayanbuildconllp.com` to `adinarayanbuildconllp.com` (the site's canonical address).
 - Enable the free SSL in hPanel. `.htaccess` already forces HTTPS.
-- If the final domain isn't `adinarayanbuildconllp.com`, update `VITE_SITE_URL` in `.env`, the canonical/OG URLs in `index.html`, `public/robots.txt` and `public/sitemap.xml`, then rebuild.
+- If the final domain isn't `adinarayanbuildconllp.com`, update `SITE_URL` in `.env`, the canonical/OG URLs in `index.html`, `public/robots.txt` and `public/sitemap.xml`, then rebuild.
 
 ## 4. What `.htaccess` does
 - Routes `/experience`, `/privacy` and `/terms` to the React app, while real files (tour, media, PDFs) are served directly.
@@ -38,7 +38,7 @@ For later updates that don't touch media or the tour, re-upload only `index.html
 ## 5. Bandwidth / optional CDN
 The film (46–86 MB) is only fetched when a visitor presses play, and tour tiles stream on demand. If bandwidth becomes a concern:
 1. Upload `videos/` to any CDN or object storage (Cloudflare R2, Bunny, S3…).
-2. Set `VITE_MEDIA_BASE=https://your-cdn/radiance` in `.env` and rebuild. The video URLs then come from the CDN.
+2. Set `MEDIA_BASE=https://your-cdn/radiance` in `.env` and rebuild. The video URLs then come from the CDN.
 
 ## 6. Post-launch checklist
 - [ ] Set up the Google Sheet lead endpoint ([LEADS_SETUP.md](LEADS_SETUP.md)); send a test enquiry.

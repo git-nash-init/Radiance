@@ -3,7 +3,7 @@
  *
  * Deploy: Extensions ▸ Apps Script in the leads Google Sheet, paste this file,
  * then Deploy ▸ New deployment ▸ Web app (Execute as: Me, Access: Anyone).
- * Put the /exec URL in the website's .env as VITE_LEADS_ENDPOINT and rebuild.
+ * Put the /exec URL in the website's .env as LEADS_ENDPOINT and rebuild.
  * Full steps: LEADS_SETUP.md
  */
 

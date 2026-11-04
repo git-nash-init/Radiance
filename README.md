@@ -13,7 +13,7 @@ npm run build      # → dist/
 npm run preview    # http://localhost:4173 (serves dist/)
 ```
 
-Copy `.env.example` to `.env` and set `VITE_LEADS_ENDPOINT` once the Apps Script is deployed (see [LEADS_SETUP.md](LEADS_SETUP.md)). Without it, form submissions are logged to the console and the UI behaves normally.
+Copy `.env.example` to `.env` and set `LEADS_ENDPOINT` once the Apps Script is deployed (see [LEADS_SETUP.md](LEADS_SETUP.md)). Without it, form submissions use the built-in live endpoint.
 
 ## Routes
 | Route | What |
@@ -38,7 +38,7 @@ npm run media:pdf      # python — project photos, founders, brochure previews,
 ```
 src/data/project.ts     all project/developer facts (single source of truth)
 src/data/projects.ts    13 completed projects from the company profile
-src/data/media.ts       image/video manifest helpers (VITE_MEDIA_BASE for a CDN)
+src/data/media.ts       image/video manifest helpers (MEDIA_BASE for a CDN)
 src/components/sections one file per landing section
 src/pages/Experience    3DVista wrapper
 public/virtual-tour/    untouched 3DVista export (rebranded title only)

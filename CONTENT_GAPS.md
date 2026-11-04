@@ -23,7 +23,7 @@ The site uses only facts found in the supplied material. The items below are mis
 - **"Elevationg Lives".** A typo in the brochure and profile; the site uses "Elevating Lives".
 - **Phone numbers.** Unified across the entire website to +91 86899 27656 as instructed by the client.
 - **Email.** salesadinarayanbuildconllp@gmail.com (updated as requested) is used across all contact points and lead alert notifications.
-- **Domain.** The client's domain is `adinarayanbuildconllp.com` (no `www`), and canonical, Open Graph, sitemap and robots URLs use exactly that. Make `www.adinarayanbuildconllp.com` redirect to it in the hosting/DNS panel so search engines see one address. If the domain ever changes, update `VITE_SITE_URL`, `index.html`, `robots.txt` and `sitemap.xml`.
+- **Domain.** The client's domain is `adinarayanbuildconllp.com` (no `www`), and canonical, Open Graph, sitemap and robots URLs use exactly that. Make `www.adinarayanbuildconllp.com` redirect to it in the hosting/DNS panel so search engines see one address. If the domain ever changes, update `SITE_URL`, `index.html`, `robots.txt` and `sitemap.xml`.
 - **Guru Saptashri photo.** The profile PDF reuses Guru Ganesh's photo on this page, so the site shows a text-only card. Please supply the correct photo.
 - **Brochure p1** shows a "Piramal Finance" mark. Confirm whether a home-loan partner should be mentioned on the site.
 - **Landbank image.** The profile's landbank page uses a generic aerial image, so it is not used on the site.
