@@ -72,9 +72,9 @@ export function OverlayProvider({ children }: { children: ReactNode }) {
               <LeadForm
                 compact
                 source={docKey === "brochure" ? "brochure" : "profile"}
-                submitLabel="Download PDF"
+                submitLabel="Download PDF & Connect on WhatsApp"
                 successTitle="Your download has started."
-                successBody="If it didn't begin, use the link below. Thank you for your interest in RADIANCE."
+                successBody="If it didn't begin, use the link below. We have also connected your enquiry with our sales desk on WhatsApp (+91 86899 27656)."
                 onSuccess={() => {
                   try {
                     localStorage.setItem(UNLOCK_KEY, "1");

@@ -1,8 +1,6 @@
-// Lead capture → Google Sheet via an Apps Script web app (apps-script/Code.gs).
-// Sent as text/plain so the browser skips the CORS preflight Apps Script
-// can't answer; Apps Script parses the JSON body itself.
+import { project } from "../data/project";
 
-/** Where the lead came from: "company" = Adinarayan home page, "enquiry" = RADIANCE page. */
+/** Where the lead came from: "company" = Adinarayan home page, "enquiry" = RADIANCE page, etc. */
 export type LeadSource = "enquiry" | "company" | "brochure" | "profile" | "experience";
 
 export type Lead = {
@@ -16,11 +14,6 @@ export type Lead = {
   website?: string; // honeypot — must stay empty
 };
 
-export const DEFAULT_LEADS_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbwaCNHQ51gf80Y9vrlJdeKxHPNvdkWkSUdj9pLdI-g65tHjhW4IVPeWkiaTSwDeAoemMw/exec";
-
-const ENDPOINT = (import.meta.env.LEADS_ENDPOINT as string | undefined) || DEFAULT_LEADS_ENDPOINT;
-
 export const PHONE_RE = /^(?:\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}$/;
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -33,81 +26,88 @@ export function validateLead(lead: Lead) {
   return errors;
 }
 
-function saveBackupLead(payload: Record<string, unknown>) {
+const SOURCE_LABELS: Record<LeadSource, string> = {
+  enquiry: "RADIANCE Project Enquiry",
+  company: "Adinarayan Buildcon General Enquiry",
+  brochure: "RADIANCE Brochure Download",
+  profile: "Adinarayan Company Profile Download",
+  experience: "360° Virtual Tour Call-Back Request",
+};
+
+/**
+ * Formats lead data into a clean WhatsApp text message.
+ */
+export function buildWhatsAppMessage(lead: Lead): string {
+  const cleanPhone = lead.phone.replace(/[\s-]/g, "");
+  const formattedPhone = cleanPhone.startsWith("+") ? cleanPhone : `+91 ${cleanPhone.replace(/^91/, "")}`;
+  const sourceLabel = SOURCE_LABELS[lead.source] || "Website Enquiry";
+
+  const lines = [
+    `*New Website Lead — Adinarayan Buildcon*`,
+    `━━━━━━━━━━━━━━━━━━━━`,
+    `*Source:* ${sourceLabel}`,
+    `*Name:* ${lead.name.trim()}`,
+    `*Mobile:* ${formattedPhone}`,
+  ];
+
+  if (lead.email?.trim()) {
+    lines.push(`*Email:* ${lead.email.trim()}`);
+  }
+
+  if (lead.interest?.trim()) {
+    lines.push(`*Interested In:* ${lead.interest.trim()}`);
+  }
+
+  if (lead.message?.trim()) {
+    lines.push(`*Message:* ${lead.message.trim()}`);
+  }
+
+  if (typeof window !== "undefined") {
+    lines.push(`*Page:* ${window.location.href}`);
+  }
+
+  lines.push(`━━━━━━━━━━━━━━━━━━━━`);
+  lines.push(`Please connect with me regarding this enquiry.`);
+
+  return lines.join("\n");
+}
+
+/**
+ * Returns the click-to-chat WhatsApp link for this lead.
+ */
+export function getWhatsAppLeadUrl(lead: Lead): string {
+  const text = buildWhatsAppMessage(lead);
+  return `https://wa.me/${project.phone.whatsapp}?text=${encodeURIComponent(text)}`;
+}
+
+/**
+ * Submits lead directly to WhatsApp:
+ * 1. Checks honeypot (bots).
+ * 2. Caches lead history in browser localStorage for backup.
+ * 3. Opens WhatsApp in a new tab/window with all filled details.
+ * 4. Returns the generated WhatsApp URL.
+ */
+export function submitLead(lead: Lead): string {
+  if (lead.website) return ""; // bot honeypot
+
+  const waUrl = getWhatsAppLeadUrl(lead);
+
+  // Backup in local storage
   try {
-    const existing = JSON.parse(localStorage.getItem("radiance_unsent_leads") || "[]");
-    existing.push(payload);
-    localStorage.setItem("radiance_unsent_leads", JSON.stringify(existing.slice(-20)));
+    const existing = JSON.parse(localStorage.getItem("radiance_leads_history") || "[]");
+    existing.push({
+      ...lead,
+      submittedAt: new Date().toISOString(),
+    });
+    localStorage.setItem("radiance_leads_history", JSON.stringify(existing.slice(-20)));
   } catch {
     // Ignore storage issues
   }
-}
 
-export async function submitLead(lead: Lead): Promise<void> {
-  if (lead.website) return; // bot — pretend success
-  const payload = {
-    ...lead,
-    name: lead.name.trim(),
-    phone: lead.phone.replace(/[\s-]/g, ""),
-    email: lead.email?.trim() ?? "",
-    page: window.location.href,
-    userAgent: navigator.userAgent,
-    submittedAt: new Date().toISOString(),
-  };
-
-  // 1. Try Vercel same-origin API proxy first (eliminates browser CORS completely)
-  let proxyStatus = 0;
-  try {
-    const apiRes = await fetch("/api/leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    proxyStatus = apiRes.status;
-
-    if (proxyStatus !== 404) {
-      const data = (await apiRes.json().catch(() => null)) as { ok?: boolean; error?: string; code?: string } | null;
-      if (apiRes.ok && data?.ok) {
-        return; // Truly saved in Google Sheets!
-      }
-      // If server responded with an error (e.g. 403 Permission Denied or 502)
-      saveBackupLead(payload);
-      throw new Error(
-        data?.error || `Server failed to store lead (status ${proxyStatus}). Please contact sales via WhatsApp.`
-      );
-    }
-  } catch (err: any) {
-    // If proxy failed with a real submission error (not route 404), rethrow to surface error state!
-    if (proxyStatus !== 404 && err?.message && !err.message.includes("404")) {
-      saveBackupLead(payload);
-      throw err;
-    }
+  // Open WhatsApp in new tab/window
+  if (typeof window !== "undefined") {
+    window.open(waUrl, "_blank", "noopener,noreferrer");
   }
 
-  // 2. Direct fetch fallback (used if running locally or in static preview where /api/leads is 404)
-  if (!ENDPOINT) {
-    saveBackupLead(payload);
-    throw new Error("LEADS_ENDPOINT is not configured.");
-  }
-
-  try {
-    const res = await fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload),
-      redirect: "follow",
-    });
-    if (res.ok) {
-      const data = (await res.json().catch(() => ({ ok: true }))) as { ok?: boolean; error?: string };
-      if (data && data.ok !== false) return;
-      throw new Error(data?.error || `Direct submission returned error`);
-    }
-    throw new Error(`Endpoint returned status ${res.status}`);
-  } catch (err: any) {
-    console.error("[leads] Direct submission failed:", err);
-    saveBackupLead(payload);
-    throw new Error(
-      "Unable to send enquiry to Google Sheets right now. Deployment permissions may require access set to 'Anyone'."
-    );
-  }
+  return waUrl;
 }

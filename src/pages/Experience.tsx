@@ -222,7 +222,13 @@ function EnquirePanel({ onClose }: { onClose: () => void }) {
       </button>
       <p className="eyebrow">Enquire</p>
       <h2 className="display mt-4 mb-8 text-4xl text-navy">Liked the view?</h2>
-      <LeadForm source="experience" compact submitLabel="Request a call back" />
+      <LeadForm
+        source="experience"
+        compact
+        submitLabel="Request a call back on WhatsApp"
+        successTitle="Call back requested."
+        successBody="We have opened WhatsApp to connect you directly with our sales team (+91 86899 27656)."
+      />
 
       <div className="mt-8 border-t border-navy/10 pt-6">
         <p className="text-xs text-muted">Or chat directly with our sales team:</p>

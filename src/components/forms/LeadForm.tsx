@@ -1,10 +1,9 @@
 import { useId, useState, type FormEvent } from "react";
 import { submitLead, validateLead, type Lead, type LeadSource } from "../../lib/leads";
-import { project } from "../../data/project";
 
 type Props = {
   source: LeadSource;
-  /** Compact = name + phone + consent only (brochure gate). */
+  /** Compact = name + phone + consent only (brochure / profile download gate). */
   compact?: boolean;
   submitLabel?: string;
   onSuccess?: () => void;
@@ -22,25 +21,25 @@ type Errors = Partial<Record<keyof Lead, string>>;
 export function LeadForm({
   source,
   compact,
-  submitLabel = "Send enquiry",
+  submitLabel = "Send enquiry via WhatsApp",
   onSuccess,
   successTitle = "Thank you.",
-  successBody = "Our team will call you shortly to take your RADIANCE enquiry forward.",
+  successBody = "We have opened WhatsApp to connect you directly with our sales team (+91 86899 27656).",
   tone = "light",
   interests = DEFAULT_INTERESTS,
 }: Props) {
   const uid = useId();
   const [values, setValues] = useState<Lead>({ name: "", phone: "", email: "", interest: "", message: "", source, consent: false, website: "" });
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
-  const [submitError, setSubmitError] = useState<string>("");
+  const [status, setStatus] = useState<"idle" | "done">("idle");
+  const [whatsappUrl, setWhatsappUrl] = useState<string>("");
 
   const set = <K extends keyof Lead>(k: K, v: Lead[K]) => {
     setValues((s) => ({ ...s, [k]: v }));
     if (errors[k]) setErrors((e) => ({ ...e, [k]: undefined }));
   };
 
-  async function onSubmit(e: FormEvent) {
+  function onSubmit(e: FormEvent) {
     e.preventDefault();
     const found = validateLead(values);
     setErrors(found);
@@ -49,21 +48,12 @@ export function LeadForm({
       document.getElementById(`${uid}-${firstKey}`)?.focus();
       return;
     }
-    setStatus("sending");
-    try {
-      await submitLead(values);
-      setStatus("done");
-      onSuccess?.();
-    } catch (err: unknown) {
-      console.error("[LeadForm error]", err);
-      setStatus("error");
-      const msg = err instanceof Error ? err.message : "";
-      setSubmitError(
-        msg.includes("403") || msg.includes("Permission") || msg.includes("Anyone")
-          ? "Our spreadsheet is currently synchronizing permissions. Please chat with us on WhatsApp or call directly."
-          : "We could not send your enquiry right now. Please try again or chat with our team on WhatsApp."
-      );
-    }
+
+    // Submit lead directly to WhatsApp with all filled form details
+    const url = submitLead(values);
+    setWhatsappUrl(url);
+    setStatus("done");
+    onSuccess?.();
   }
 
   const dark = tone === "dark";
@@ -85,13 +75,39 @@ export function LeadForm({
         <div className="gold-rule mb-8 w-16" />
         <p className={`display text-4xl ${dark ? "text-ivory" : "text-navy"}`}>{successTitle}</p>
         <p className={`mt-4 max-w-md ${dark ? "text-ivory/70" : "text-muted"}`}>{successBody}</p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          {whatsappUrl && (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-gold inline-flex items-center gap-2.5"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.1-1.3c0-.1-.2-.2-.5-.3z" />
+              </svg>
+              Open WhatsApp Chat Again
+            </a>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              setStatus("idle");
+              setValues({ name: "", phone: "", email: "", interest: "", message: "", source, consent: false, website: "" });
+            }}
+            className={`text-xs underline underline-offset-4 ${dark ? "text-ivory/60 hover:text-ivory" : "text-muted hover:text-navy"}`}
+          >
+            Send another enquiry
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
     <form onSubmit={onSubmit} noValidate className="relative grid gap-7">
-      {/* Honeypot: hidden from people, tempting to bots */}
+      {/* Honeypot: hidden from people, catches bots */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>
           Website
@@ -189,8 +205,7 @@ export function LeadForm({
             aria-describedby={describe("consent")}
           />
           <span>
-            I agree to be contacted by Adinarayan Buildcon LLP about my enquiry by call, SMS, WhatsApp or email, even if my number is on the DND
-            registry. See the{" "}
+            I agree to be contacted by Adinarayan Buildcon LLP about my enquiry via WhatsApp, call, or email. See our{" "}
             <a href="/privacy" className="underline underline-offset-4 hover:text-gold">
               privacy policy
             </a>
@@ -201,52 +216,13 @@ export function LeadForm({
       </div>
 
       <div className="flex flex-wrap items-center gap-5">
-        <button type="submit" className="btn btn-gold min-w-52 disabled:opacity-60" disabled={status === "sending"}>
-          {status === "sending" ? "Sending…" : submitLabel}
+        <button type="submit" className="btn btn-gold min-w-56 inline-flex items-center justify-center gap-2.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.1-1.3c0-.1-.2-.2-.5-.3z" />
+          </svg>
+          <span>{submitLabel}</span>
         </button>
       </div>
-
-      {status === "error" && (
-        <div
-          role="alert"
-          className={`rounded-sm border p-4 text-sm leading-relaxed ${
-            dark ? "border-amber-500/40 bg-amber-950/20 text-ivory" : "border-amber-200 bg-amber-50 text-[#7a4805]"
-          }`}
-        >
-          <p className="font-semibold">{submitError || "Something went wrong sending your enquiry."}</p>
-          <p className="mt-1 text-xs opacity-90">
-            Don't worry, your details are not lost. You can connect with our team directly:
-          </p>
-          <div className="mt-3 flex flex-wrap items-center gap-3">
-            <button
-              type="submit"
-              className="inline-flex items-center gap-1 rounded bg-[#b8893b] px-3 py-1.5 text-xs font-semibold text-navy transition hover:bg-[#c99a4c]"
-            >
-              Retry
-            </button>
-            <a
-              href={`https://wa.me/918689927656?text=${encodeURIComponent(
-                `Hello Adinarayan team, I am enquiring about RADIANCE:\nName: ${values.name}\nPhone: ${values.phone}${
-                  values.email ? `\nEmail: ${values.email}` : ""
-                }${values.interest ? `\nInterest: ${values.interest}` : ""}${
-                  values.message ? `\nNote: ${values.message}` : ""
-                }`
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded border border-[#25D366]/40 bg-[#25D366]/10 px-3 py-1.5 text-xs font-semibold text-[#128C7E] transition hover:bg-[#25D366]/20"
-            >
-              Chat on WhatsApp
-            </a>
-            <a
-              href={`tel:${project.phone.tel}`}
-              className="inline-flex items-center gap-1 text-xs underline underline-offset-2 opacity-80 hover:opacity-100"
-            >
-              Call {project.phone.display}
-            </a>
-          </div>
-        </div>
-      )}
     </form>
   );
 }

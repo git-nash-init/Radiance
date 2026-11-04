@@ -4,14 +4,12 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
-  const leadsEndpoint = env.LEADS_ENDPOINT || process.env.LEADS_ENDPOINT || env.VITE_LEADS_ENDPOINT || "";
   const siteUrl = env.SITE_URL || process.env.SITE_URL || env.VITE_SITE_URL || "https://adinarayanbuildconllp.com";
   const mediaBase = env.MEDIA_BASE || process.env.MEDIA_BASE || env.VITE_MEDIA_BASE || "";
 
   return {
-    envPrefix: ["VITE_", "LEADS_", "SITE_", "MEDIA_"],
+    envPrefix: ["VITE_", "SITE_", "MEDIA_"],
     define: {
-      "import.meta.env.LEADS_ENDPOINT": JSON.stringify(leadsEndpoint),
       "import.meta.env.SITE_URL": JSON.stringify(siteUrl),
       "import.meta.env.MEDIA_BASE": JSON.stringify(mediaBase),
     },
