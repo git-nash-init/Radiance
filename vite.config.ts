@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     target: "es2020",
+    emptyOutDir: false,
     // The 3DVista tour, videos and PDFs are served as-is from public/.
     assetsInlineLimit: 0,
     rolldownOptions: {

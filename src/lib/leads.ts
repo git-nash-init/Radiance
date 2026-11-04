@@ -16,7 +16,10 @@ export type Lead = {
   website?: string; // honeypot — must stay empty
 };
 
-const ENDPOINT = import.meta.env.VITE_LEADS_ENDPOINT as string | undefined;
+export const DEFAULT_LEADS_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbwaCNHQ51gf80Y9vrlJdeKxHPNvdkWkSUdj9pLdI-g65tHjhW4IVPeWkiaTSwDeAoemMw/exec";
+
+const ENDPOINT = (import.meta.env.VITE_LEADS_ENDPOINT as string | undefined) || DEFAULT_LEADS_ENDPOINT;
 
 export const PHONE_RE = /^(?:\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}$/;
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;

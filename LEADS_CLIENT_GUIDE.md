@@ -146,11 +146,11 @@ function json(obj) {
    - Select your Google account (`salesadinarayanbuildconllp@gmail.com`).
    - Click **Advanced** ▸ **Go to Untitled project (unsafe)** (Google shows this standard prompt for personal scripts).
    - Click **Allow**.
-6. You will see a **Web app URL** that looks like:
+6. The deployed active **Web app URL** is:
    ```
-   https://script.google.com/macros/s/AKfycbx.../exec
+   https://script.google.com/macros/s/AKfycbwaCNHQ51gf80Y9vrlJdeKxHPNvdkWkSUdj9pLdI-g65tHjhW4IVPeWkiaTSwDeAoemMw/exec
    ```
-7. **Copy this URL** and send it to your website developer (or paste it into `.env` under `VITE_LEADS_ENDPOINT`).
+7. This endpoint is already connected directly into the website code (`src/lib/leads.ts` and `.env`). All website leads will automatically stream into this spreadsheet in real time!
 
 ---
 

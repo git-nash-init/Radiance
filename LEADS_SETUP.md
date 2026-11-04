@@ -20,9 +20,9 @@ Every enquiry, brochure download and tour enquiry lands as a row in a Google She
 4. Copy the **Web app URL**. It ends in `/exec`.
 
 ## 4. Connect the website
-1. In `radiance-web/`, create a `.env` file:
+1. The project has this endpoint built-in by default in `src/lib/leads.ts`. You can also configure it in `radiance-web/.env`:
    ```
-   VITE_LEADS_ENDPOINT=https://script.google.com/macros/s/XXXXXXXX/exec
+   VITE_LEADS_ENDPOINT=https://script.google.com/macros/s/AKfycbwaCNHQ51gf80Y9vrlJdeKxHPNvdkWkSUdj9pLdI-g65tHjhW4IVPeWkiaTSwDeAoemMw/exec
    ```
 2. Rebuild with `npm run build` and re-upload `dist/`.
 
