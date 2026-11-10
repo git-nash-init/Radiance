@@ -2,6 +2,8 @@
 
 A cinematic landing site for **RADIANCE, Dombivli East** (MahaRERA PR1330002600193). It includes a hero film, a scroll-scrubbed tower unveiling, the client's full 3DVista 360° tour, amenities, connectivity, the developer's track record, gated brochure downloads, and lead capture to a Google Sheet.
 
+![RADIANCE hero section screenshot](docs/screenshots/radiance-hero.webp)
+
 **Stack:** React 18 + TypeScript + Vite 8, Tailwind CSS v4, React Router, GSAP/ScrollTrigger, Lenis, Framer Motion (LazyMotion).
 
 ## Run it
